@@ -1263,11 +1263,11 @@
         </tr>
         <tr>
             <td>حالة خاصة 3</td>
-            <td>استئذان نهاية الدوام (الاستئذان مبني على وقت الحضور) مثال: حضر المعلم الساعة 7:20 موعد الانصراف 1:20 استأذن الساعة 10:00 يحسب من الساعة 10:00 الى 1:30 استئذانه فتكون مدة الاستئذان ثلاث ساعات ونصف</td>
+            <td>استئذان نهاية الدوام (الاستئذان مبني على وقت الحضور) مثال: حضر المعلم الساعة 7:30 موعد الانصراف 1:30 استأذن الساعة 10:00 يحسب من الساعة 10:00 الى 1:30 استئذانه فتكون مدة الاستئذان ثلاث ساعات ونصف</td>
         </tr>
         <tr>
             <td>حالة خاصة 4</td>
-            <td>للإعفاء من بصمة التواجد يحدد بداية الاستئذان قبل موعد حضوره بساعتين + دقيقة (حضر الساعة 9:25 من الاستئذان الصباحي يحدد البداية 7:24 فيعفي من بصمة التواجد والانصراف 1:26)</td>
+            <td>للإعفاء من بصمة التواجد يحدد بداية الاستئذان قبل موعد حضوره بساعتين + دقيقة (حضر الساعة 9:25 من الاستئذان الصباحي يحدد البداية 7:24 فيعفي من بصمة التواجد والانصراف 1:24)</td>
         </tr>
     </tbody>
 </table>
@@ -2387,134 +2387,139 @@
             return `${formattedHour}:${minutes} ${period}`;
         }
         
-        // وظيفة حساب الدوام المرن المعدلة
-        function calculateFlexibleSchedule() {
-            const stage = document.getElementById('stage').value;
-            const arrivalTime = document.getElementById('arrival').value;
-            const gender = document.getElementById('gender').value;
-            
-            // إخفاء رسالة الخطأ
-            document.getElementById('errorMessage').style.display = 'none';
-            
-            // تحويل وقت الحضور إلى دقائق لتسهيل المقارنة
-            const [hours, minutes] = arrivalTime.split(':').map(Number);
-            const arrivalMinutes = hours * 60 + minutes;
-            
-            let presenceStart, presenceEnd, departure;
-            
-            // جداول البحث لكل مرحلة
-            if (stage === 'kindergarten') {
-                // رياض الأطفال
-                if (arrivalMinutes <= 6*60+45) {
-                    presenceStart = "08:46";
-                    presenceEnd = "09:45";
-                    departure = "11:35";
-                } else if (arrivalMinutes >= 7*60+30) {
-                    presenceStart = "09:31";
-                    presenceEnd = "10:30";
-                    departure = "12:20";
-                } else {
-                    // حساب الوقت بناء على الدقائق بعد 6:45
-                    const minutesAfter645 = arrivalMinutes - (6*60+45);
-                    presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
-                    presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
-                    departure = addMinutesToTime(6*60+45 + minutesAfter645, 290);
-                }
-            } else if (stage === 'elementary') {
-                // الابتدائية
-                if (arrivalMinutes <= 6*60+45) {
-                    presenceStart = "08:46";
-                    presenceEnd = "09:45";
-                    departure = "12:45";
-                } else if (arrivalMinutes >= 7*60+30) {
-                    presenceStart = "09:31";
-                    presenceEnd = "10:30";
-                    departure = "13:30";
-                } else {
-                    const minutesAfter645 = arrivalMinutes - (6*60+45);
-                    presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
-                    presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
-                    departure = addMinutesToTime(6*60+45 + minutesAfter645, 360);
-                }
-            } else if (stage === 'middle') {
-                // المتوسطة
-                if (arrivalMinutes <= 6*60+55) {
-                    presenceStart = "08:56";
-                    presenceEnd = "09:55";
-                    departure = "13:05";
-                } else if (arrivalMinutes >= 7*60+40) {
-                    presenceStart = "09:41";
-                    presenceEnd = "10:40";
-                    departure = "13:50";
-                } else {
-                    const minutesAfter655 = arrivalMinutes - (6*60+55);
-                    presenceStart = addMinutesToTime(6*60+55 + minutesAfter655, 121);
-                    presenceEnd = addMinutesToTime(6*60+55 + minutesAfter655, 180);
-                    departure = addMinutesToTime(6*60+55 + minutesAfter655, 370);
-                }
-            } else if (stage === 'high') {
-                // الثانوية
-                if (arrivalMinutes <= 7*60+10) {
-                    presenceStart = "09:11";
-                    presenceEnd = "10:10";
-                    departure = "13:20";
-                } else if (arrivalMinutes >= 7*60+55) {
-                    presenceStart = "09:56";
-                    presenceEnd = "10:55";
-                    departure = "14:05";
-                } else {
-                    const minutesAfter710 = arrivalMinutes - (7*60+10);
-                    presenceStart = addMinutesToTime(7*60+10 + minutesAfter710, 121);
-                    presenceEnd = addMinutesToTime(7*60+10 + minutesAfter710, 180);
-                    departure = addMinutesToTime(7*60+10 + minutesAfter710, 370);
-                }
-            } else if (stage === 'ministry') {
-                // الوزارة والمناطق
-                if (arrivalMinutes <= 7*60+0) {
-                    presenceStart = "09:01";
-                    presenceEnd = "10:00";
-                    departure = (gender === 'female') ? "13:15" : "13:30";
-                } else if (arrivalMinutes >= 8*60+0) {
-                    presenceStart = "10:01";
-                    presenceEnd = "11:00";
-                    departure = (gender === 'female') ? "14:45" : "15:00";
-                } else {
-                    const minutesAfter700 = arrivalMinutes - (7*60+0);
-                    presenceStart = addMinutesToTime(7*60+0 + minutesAfter700, 121);
-                    presenceEnd = addMinutesToTime(7*60+0 + minutesAfter700, 180);
-                    
-                    // حساب وقت الانصراف بناءً على الجنس
-                    if (gender === 'female') {
-                        departure = addMinutesToTime(7*60+0 + minutesAfter700, 375);
-                    } else {
-                        departure = addMinutesToTime(7*60+0 + minutesAfter700, 390);
-                    }
-                }
-            }
-            
-            // عرض النتائج
-            const resultContent = document.getElementById('resultContent');
-            resultContent.innerHTML = `
-                <div class="result-card">
-                    <h3>وقت الحضور</h3>
-                    <div class="time-value">${formatTime(arrivalTime)}</div>
-                </div>
-                <div class="result-card">
-                    <h3>بداية فترة التواجد</h3>
-                    <div class="time-value">${formatTime(presenceStart)}</div>
-                </div>
-                <div class="result-card">
-                    <h3>نهاية فترة التواجد</h3>
-                    <div class="time-value">${formatTime(presenceEnd)}</div>
-                </div>
-                <div class="result-card">
-                    <h3>وقت الانصراف</h3>
-                    <div class="time-value highlight">${formatTime(departure)}</div>
-                </div>
-            `;
-            
-            document.getElementById('calculatorResult').style.display = 'block';
+// وظيفة حساب الدوام المرن المعدلة
+function calculateFlexibleSchedule() {
+    const stage = document.getElementById('stage').value;
+    const arrivalTime = document.getElementById('arrival').value;
+    const gender = document.getElementById('gender').value;
+    
+    // إخفاء رسالة الخطأ
+    document.getElementById('errorMessage').style.display = 'none';
+    
+    // تحويل وقت الحضور إلى دقائق لتسهيل المقارنة
+    const [hours, minutes] = arrivalTime.split(':').map(Number);
+    const arrivalMinutes = hours * 60 + minutes;
+    
+    let presenceStart, presenceEnd, departure;
+    
+    // جداول البحث لكل مرحلة
+    if (stage === 'kindergarten') {
+        // رياض الأطفال
+        if (arrivalMinutes <= 6*60+45) {
+            presenceStart = "08:46";
+            presenceEnd = "09:45";
+            departure = "11:35";
+        } else if (arrivalMinutes >= 7*60+30) {
+            presenceStart = "09:31";
+            presenceEnd = "10:30";
+            departure = "12:20";
+        } else {
+            // حساب الوقت بناء على الدقائق بعد 6:45
+            const minutesAfter645 = arrivalMinutes - (6*60+45);
+            presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+            presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+            departure = addMinutesToTime(6*60+45 + minutesAfter645, 290);
         }
+    } else if (stage === 'elementary') {
+        // الابتدائية
+        if (arrivalMinutes <= 6*60+45) {
+            presenceStart = "08:46";
+            presenceEnd = "09:45";
+            departure = "12:45";
+        } else if (arrivalMinutes >= 7*60+30) {
+            presenceStart = "09:31";
+            presenceEnd = "10:30";
+            departure = "13:30";
+        } else {
+            const minutesAfter645 = arrivalMinutes - (6*60+45);
+            presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+            presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+            departure = addMinutesToTime(6*60+45 + minutesAfter645, 360);
+        }
+    } else if (stage === 'middle') {
+        // المتوسطة
+        if (arrivalMinutes <= 6*60+55) {
+            presenceStart = "08:56";
+            presenceEnd = "09:55";
+            departure = "13:05";
+        } else if (arrivalMinutes >= 7*60+40) {
+            presenceStart = "09:41";
+            presenceEnd = "10:40";
+            departure = "13:50";
+        } else {
+            const minutesAfter655 = arrivalMinutes - (6*60+55);
+            presenceStart = addMinutesToTime(6*60+55 + minutesAfter655, 121);
+            presenceEnd = addMinutesToTime(6*60+55 + minutesAfter655, 180);
+            departure = addMinutesToTime(6*60+55 + minutesAfter655, 370);
+        }
+    } else if (stage === 'high') {
+        // الثانوية
+        if (arrivalMinutes <= 7*60+10) {
+            presenceStart = "09:11";
+            presenceEnd = "10:10";
+            departure = "13:20";
+        } else if (arrivalMinutes >= 7*60+55) {
+            presenceStart = "09:56";
+            presenceEnd = "10:55";
+            departure = "14:05";
+        } else {
+            const minutesAfter710 = arrivalMinutes - (7*60+10);
+            presenceStart = addMinutesToTime(7*60+10 + minutesAfter710, 121);
+            presenceEnd = addMinutesToTime(7*60+10 + minutesAfter710, 180);
+            departure = addMinutesToTime(7*60+10 + minutesAfter710, 370);
+        }
+    } else if (stage === 'ministry') {
+        // الوزارة والمناطق
+        if (arrivalMinutes <= 7*60+0) {
+            presenceStart = "09:01";
+            presenceEnd = "10:00";
+            departure = (gender === 'female') ? "13:15" : "13:30";
+        } else if (arrivalMinutes === 8*60+0) {
+            // الحالة الخاصة للحضور الساعة 8:00
+            presenceStart = "10:01";
+            presenceEnd = "11:00";
+            departure = (gender === 'female') ? "14:15" : "14:30";
+        } else if (arrivalMinutes >= 8*60+1) {
+            presenceStart = "10:01";
+            presenceEnd = "11:00";
+            departure = (gender === 'female') ? "14:45" : "15:00";
+        } else {
+            const minutesAfter700 = arrivalMinutes - (7*60+0);
+            presenceStart = addMinutesToTime(7*60+0 + minutesAfter700, 121);
+            presenceEnd = addMinutesToTime(7*60+0 + minutesAfter700, 180);
+            
+            // حساب وقت الانصراف بناءً على الجنس
+            if (gender === 'female') {
+                departure = addMinutesToTime(7*60+0 + minutesAfter700, 375);
+            } else {
+                departure = addMinutesToTime(7*60+0 + minutesAfter700, 390);
+            }
+        }
+    }
+    
+    // عرض النتائج
+    const resultContent = document.getElementById('resultContent');
+    resultContent.innerHTML = `
+        <div class="result-card">
+            <h3>وقت الحضور</h3>
+            <div class="time-value">${formatTime(arrivalTime)}</div>
+        </div>
+        <div class="result-card">
+            <h3>بداية فترة التواجد</h3>
+            <div class="time-value">${formatTime(presenceStart)}</div>
+        </div>
+        <div class="result-card">
+            <h3>نهاية فترة التواجد</h3>
+            <div class="time-value">${formatTime(presenceEnd)}</div>
+        </div>
+        <div class="result-card">
+            <h3>وقت الانصراف</h3>
+            <div class="time-value highlight">${formatTime(departure)}</div>
+        </div>
+    `;
+    
+    document.getElementById('calculatorResult').style.display = 'block';
+}
         
         // تهيئة أولية
         document.addEventListener('DOMContentLoaded', function() {
