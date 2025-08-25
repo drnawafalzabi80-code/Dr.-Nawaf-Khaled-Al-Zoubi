@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام الدوام المرن - د. نواف خالد الزعبي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -126,15 +125,15 @@
             text-align: center;
         }
         
-.content-text {
-    line-height: 1.8;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    border-right: 3px solid #3498db;
-}
+        .content-text {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-right: 3px solid #3498db;
+        }
         
         .content-list {
             padding-right: 20px;
@@ -204,108 +203,49 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
         }
         
-.section-title {
-    color: #2c3e50;
-    margin: 25px 0 15px 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #3498db;
-}
-
-.note {
-    background: #fff3cd;
-    border-right: 5px solid #ffc107;
-    padding: 15px;
-    margin: 20px 0;
-    border-radius: 5px;
-}
-
-.note strong {
-    color: #856404;
-}
-
-.example-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 0.9rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.example-table th,
-.example-table td {
-    padding: 12px;
-    text-align: right;
-    border: 1px solid #ddd;
-}
-
-.example-table th {
-    background-color: #2c3e50;
-    color: white;
-}
-
-.example-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 0.9rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.schedule-table thead tr {
-    background-color: #3498db;
-    color: #ffffff;
-    text-align: right;
-}
-
-.schedule-table th,
-.schedule-table td {
-    padding: 10px 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-.schedule-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.schedule-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.schedule-table tbody tr:last-of-type {
-    border-bottom: 2px solid #3498db;
-}
-
-.schedule-table tbody tr.active-row {
-    font-weight: bold;
-    color: #3498db;
-}
-
-@media (max-width: 768px) {
-    .example-table {
-        font-size: 0.7rem;
-    }
-    
-    .example-table th, 
-    .example-table td {
-        padding: 6px 4px;
-    }
-
-    .schedule-table {
-        font-size: 0.7rem;
-    }
-    
-    .schedule-table th, 
-    .schedule-table td {
-        padding: 6px 4px;
-    }
-}
+        .section-title {
+            color: #2c3e50;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-right: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .note strong {
+            color: #856404;
+        }
+        
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .example-table th,
+        .example-table td {
+            padding: 12px;
+            text-align: right;
+            border: 1px solid #ddd;
+        }
+        
+        .example-table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        .example-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
@@ -324,7 +264,7 @@
         
         .schedule-table th,
         .schedule-table td {
-            padding: 8px 10px;
+            padding: 10px 12px;
             text-align: center;
             border: 1px solid #ddd;
         }
@@ -345,123 +285,194 @@
             font-weight: bold;
             color: #3498db;
         }
+        
+        @media (max-width: 768px) {
+            .example-table {
+                font-size: 0.7rem;
+            }
+            
+            .example-table th, 
+            .example-table td {
+                padding: 6px 4px;
+            }
 
-        .example-table {
-            width: 100%;
-            border-collapse: collapse;
+            .schedule-table {
+                font-size: 0.7rem;
+            }
+            
+            .schedule-table th, 
+            .schedule-table td {
+                padding: 6px 4px;
+            }
+        }
+        
+        /* تصميم الآلة الحاسبة الجديدة */
+        .calculator-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
             margin: 20px 0;
-            font-size: 0.9rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
         }
-        
-        .example-table th,
-        .example-table td {
-            padding: 10px;
-            text-align: right;
-            border: 1px solid #ddd;
-        }
-        
-        .example-table th {
-            background-color: #2c3e50;
+
+        .calculator-header {
+            background: #2c3e50;
             color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            margin: -25px -25px 20px -25px;
         }
-        
-        .example-table tr:nth-child(even) {
-            background-color: #f2f2f2;
+
+        .calculator-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
-        
-/* تصميم الآلة الحاسبة */
-.calculator-container {
-    background: white;
-    border-radius: 10px;
-    padding: 25px;
-    margin: 20px 0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
 
-.calculator-title {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #3498db;
-    text-align: center;
-}
+        .calculator-header p {
+            opacity: 0.9;
+        }
 
-.calculator-form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-}
+        .calculator-form {
+            padding: 0;
+        }
 
-.form-group {
-    margin-bottom: 15px;
-}
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
 
-.form-group input, .form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
+        .form-group select, 
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
 
-.calculator-result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #e8f4fc;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    display: none;
-}
+        .form-group select:focus, 
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
 
-.btn-calculate {
-    background: #27ae60;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s;
-    width: 100%;
-}
+        .btn-calculate {
+            background: linear-gradient(135deg, #27ae60, #219653);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
 
-.btn-calculate:hover {
-    background: #219653;
-}
+        .btn-calculate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
 
-.info-section {
-    background: #e8f4fc;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0;
-    border-right: 5px solid #3498db;
-}
+        .calculator-result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f4fc;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            border-right: 5px solid #3498db;
+        }
 
-.info-title {
-    color: #2c3e50;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #3498db;
-}
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .result-value {
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .calculator-info-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            border-top: 1px solid #ddd;
+            margin: 20px -25px -25px -25px;
+        }
+
+        .calculator-info-title {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            text-align: center;
+        }
+
+        .calculator-info-section ul {
+            padding-right: 20px;
+        }
+
+        .calculator-info-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-section {
+            background: #e8f4fc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 5px solid #3498db;
+        }
+
+        .info-title {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #3498db;
+        }
    
-.content-list {
-    padding-right: 20px;
-    margin-bottom: 20px;
-}
+        .content-list {
+            padding-right: 20px;
+            margin-bottom: 20px;
+        }
 
-.content-list li {
-    margin-bottom: 10px;
-    line-height: 1.6;
-}
-     
+        .content-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+         
         /* شريط التقدم */
         .progress-container {
             width: 100%;
@@ -653,6 +664,50 @@
             color: #ffd700;
             font-weight: bold;
         }
+        
+        /* تصميم جديد لنتائج الحاسبة */
+        .result-flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            border-top: 4px solid #3498db;
+        }
+        
+        .result-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-card .time-value {
+            font-size: 1.3rem;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .error-message {
+            background: #ffe6e6;
+            color: #d63031;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            display: none;
+            border-right: 4px solid #d63031;
+        }
     </style>
 </head>
 <body>
@@ -724,66 +779,67 @@
         
         <!-- أزرار الإجراءات -->
         <div class="action-buttons">
-            <div class="action-btn" onclick="generatePDF()">
-                <i class="fas fa-print"></i>
-                <span>طباعة</span>
-            </div>
-            <div class="action-btn" onclick="downloadContent()">
-                <i class="fas fa-download"></i>
-                <span>تحميل</span>
-            </div>
             <div class="action-btn" onclick="openCalculator()">
                 <i class="fas fa-calculator"></i>
                 <span>حاسبة الدوام</span>
             </div>
-            <div class="action-btn" onclick="saveContent()">
-                <i class="fas fa-save"></i>
-                <span>حفظ</span>
-            </div>
         </div>
         
-<!-- حاسبة الدوام المرن -->
-<div class="content-container" id="calculator-content">
-    <div class="calculator-container">
-        <h2 class="calculator-title"><i class="fas fa-calculator"></i> حاسبة الدوام المرن</h2>
-        
-        <div class="calculator-form">
-            <div class="form-group">
-                <label for="stage">المرحلة التعليمية:</label>
-                <select id="stage">
-                    <option value="kindergarten">رياض الأطفال</option>
-                    <option value="elementary">المرحلة الابتدائية</option>
-                    <option value="middle">المرحلة المتوسطة</option>
-                    <option value="high">المرحلة الثانوية</option>
-                    <option value="ministry">ديوان الوزارة والمناطق</option>
-                </select>
+        <!-- حاسبة الدوام المرن الجديدة -->
+        <div class="content-container" id="calculator-content">
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <h2><i class="fas fa-calculator"></i> حاسبة الدوام المرن المتقدمة</h2>
+                    <p>احسب فترة التواجد والانصراف حسب مرونتك</p>
+                </div>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="stage">المرحلة التعليمية:</label>
+                        <select id="stage" onchange="toggleGenderField()">
+                            <option value="kindergarten">رياض الأطفال</option>
+                            <option value="elementary">المرحلة الابتدائية</option>
+                            <option value="middle">المرحلة المتوسطة</option>
+                            <option value="high">المرحلة الثانوية</option>
+                            <option value="ministry">ديوان الوزارة والمناطق</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="genderField" style="display: none;">
+                        <label for="gender">النوع:</label>
+                        <select id="gender">
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="arrival">وقت الحضور:</label>
+                        <input type="time" id="arrival" value="07:00">
+                    </div>
+                    
+                    <button class="btn-calculate" onclick="calculateFlexibleSchedule()">
+                        <i class="fas fa-calculator"></i> احسب فترة التواجد والانصراف
+                    </button>
+                    
+                    <div class="error-message" id="errorMessage"></div>
+                    
+                    <div class="calculator-result" id="calculatorResult">
+                        <div class="result-flex-container" id="resultContent"></div>
+                    </div>
+                </div>
+                
+                <div class="calculator-info-section">
+                    <h3 class="calculator-info-title">إرشادات الاستخدام:</h3>
+                    <ul>
+                        <li>اختر المرحلة التعليمية من القائمة المنسدلة</li>
+                        <li>لديوان الوزارة والمناطق، اختر النوع (ذكر/أنثى)</li>
+                        <li>أدخل وقت الحضور الفعلي</li>
+                        <li>انقر على "احسب فترة التواجد والانصراف" لمعرفة النتائج</li>
+                    </ul>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="arrival">وقت الحضور:</label>
-                <input type="time" id="arrival" value="07:00">
-            </div>
-            <div class="form-group">
-                <label for="required-hours">عدد ساعات العمل المطلوبة:</label>
-                <input type="number" id="required-hours" value="6" min="1" max="12">
-            </div>
-            <button class="btn-calculate" onclick="calculateSchedule()">
-                <i class="fas fa-calculator"></i> احسب وقت الانصراف
-            </button>
         </div>
-        
-        <div class="calculator-result" id="calculatorResult"></div>
-        
-        <div class="info-section">
-            <h3 class="info-title">إرشادات الاستخدام:</h3>
-            <ul>
-                <li>اختر المرحلة التعليمية من القائمة المنسدلة</li>
-                <li>أدخل وقت الحضور الفعلي</li>
-                <li>حدد عدد ساعات العمل المطلوبة حسب النظام</li>
-                <li>انقر على "احسب وقت الانصراف" لمعرفة الوقت المتوقع للانصراف</li>
-            </ul>
-        </div>
-    </div>
-</div>
         
         <!-- محتوى رياض الأطفال -->
         <div class="content-container" id="content1" style="display: block;">
@@ -2206,65 +2262,56 @@
         </div>
     </div>
     
-    <div class="back-to-top" id="backToTop">
+   <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
     
     <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i> تم تحميل المحتوى بنجاح
+        <span id="notificationText"></span>
     </div>
-
+    
     <script>
-        // دالة لعرض المحتوى المناسب عند النقر على مرحلة
-        function showContent(stageNumber) {
-            // إخفاء جميع محتويات المراحل
+        // وظيفة لإظهار المحتوى المحدد وإخفاء الآخرين
+        function showContent(contentId) {
+            // إخفاء جميع المحتويات
             const contents = document.querySelectorAll('.content-container');
             contents.forEach(content => {
                 content.style.display = 'none';
             });
             
             // إظهار المحتوى المحدد
-            document.getElementById('content' + stageNumber).style.display = 'block';
+            document.getElementById('content' + contentId).style.display = 'block';
             
-            // تحديث حالة النشاط للمراحل
-            const stages = document.querySelectorAll('.stage-box');
-            stages.forEach((stage, index) => {
-                if (index === stageNumber - 1) {
-                    stage.classList.add('active-stage');
+            // تحديث حالة الأزرار النشطة
+            const boxes = document.querySelectorAll('.stage-box');
+            boxes.forEach((box, index) => {
+                if (index + 1 === contentId) {
+                    box.classList.add('active-stage');
                 } else {
-                    stage.classList.remove('active-stage');
+                    box.classList.remove('active-stage');
                 }
             });
             
-            // إظهار إشعار
-            showNotification('تم تحميل محتوى المرحلة بنجاح');
-            
             // تحديث شريط التقدم
-            updateProgressBar(stageNumber);
+            updateProgressBar(contentId);
             
-            // التمرير إلى الأعلى
-            scrollToTop();
+            // إظهار إشعار
+            showNotification('تم تحميل محتوى المرحلة المطلوبة');
         }
         
-        // دالة التمرير إلى الأعلى
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        
-        // دالة تحديث شريط التقدم
-        function updateProgressBar(stageNumber) {
+        // وظيفة تحديث شريط التقدم
+        function updateProgressBar(contentId) {
             const progressBar = document.getElementById('progressBar');
-            const progressPercentage = (stageNumber / 5) * 100;
+            const progressPercentage = (contentId / 5) * 100;
             progressBar.style.width = progressPercentage + '%';
         }
         
-        // دالة إظهار الإشعارات
+        // وظيفة إظهار الإشعارات
         function showNotification(message) {
             const notification = document.getElementById('notification');
-            notification.innerHTML = '<i class="fas fa-check-circle"></i> ' + message;
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
             notification.classList.add('show');
             
             setTimeout(() => {
@@ -2272,169 +2319,208 @@
             }, 3000);
         }
         
-        // دالة إنشاء PDF
-        function generatePDF() {
-            const element = document.getElementById('content' + getActiveStage());
-            const options = {
-                margin: 10,
-                filename: 'نظام_الدوام_المرن.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            
-            html2pdf().set(options).from(element).save();
-            
-            showNotification('جاري تحضير الملف للتحميل');
-        }
+        // وظيفة العودة إلى الأعلى
+        const backToTopButton = document.getElementById('backToTop');
         
-        // دالة للحصول على المرحلة النشطة
-        function getActiveStage() {
-            const stages = document.querySelectorAll('.stage-box');
-            for (let i = 0; i < stages.length; i++) {
-                if (stages[i].classList.contains('active-stage')) {
-                    return i + 1;
-                }
-            }
-            return 1;
-        }
-        
-        // دالة لتحويل الوقت من 24 ساعة إلى 12 ساعة
-function convertTo12Hour(time24) {
-    const [hours, minutes] = time24.split(':');
-    let period = 'ص';
-    let hours12 = parseInt(hours);
-    
-    if (hours12 >= 12) {
-        period = 'م';
-        if (hours12 > 12) {
-            hours12 -= 12;
-        }
-    }
-    
-    if (hours12 === 0) {
-        hours12 = 12;
-    }
-    
-    return `${hours12}:${minutes} ${period}`;
-}
-
-// دالة لتحويل الوقت من 12 ساعة إلى 24 ساعة (للاستخدام المستقبلي)
-function convertTo24Hour(time12) {
-    const [time, period] = time12.split(' ');
-    let [hours, minutes] = time.split(':');
-    
-    if (period === 'م' && hours !== '12') {
-        hours = String(parseInt(hours) + 12);
-    } else if (period === 'ص' && hours === '12') {
-        hours = '00';
-    }
-    
-    return `${hours.padStart(2, '0')}:${minutes}`;
-}
-
-// دالة لحساب وقت الانصراف
-function calculateSchedule() {
-    const stage = document.getElementById('stage').value;
-    const arrival = document.getElementById('arrival').value;
-    const requiredHours = parseInt(document.getElementById('required-hours').value);
-    
-    if (!arrival) {
-        alert('يرجى إدخال وقت الحضور');
-        return;
-    }
-    
-    // تحويل وقت الحضور إلى دقائق
-    const [arrivalHours, arrivalMinutes] = arrival.split(':').map(Number);
-    let totalArrivalMinutes = arrivalHours * 60 + arrivalMinutes;
-    
-    // إضافة ساعات العمل
-    let totalDepartureMinutes = totalArrivalMinutes + requiredHours * 60;
-    
-    // تحويل الدقائق إلى توقيت
-    let departureHours = Math.floor(totalDepartureMinutes / 60);
-    let departureMinutes = totalDepartureMinutes % 60;
-    
-    // تحويل إلى توقيت 24 ساعة
-    departureHours = departureHours % 24;
-    
-    // تنسيق الوقت
-    const formattedDeparture24 = `${departureHours.toString().padStart(2, '0')}:${departureMinutes.toString().padStart(2, '0')}`;
-    
-    // تحويل إلى نظام 12 ساعة
-    const formattedArrival12 = convertTo12Hour(arrival);
-    const formattedDeparture12 = convertTo12Hour(formattedDeparture24);
-    
-    // عرض النتيجة
-    const resultElement = document.getElementById('calculatorResult');
-    resultElement.innerHTML = `
-        <p>وقت الحضور: <strong>${formattedArrival12}</strong></p>
-        <p>وقت الانصراف المتوقع: <strong style="color: #2c3e50; font-size: 1.2rem;">${formattedDeparture12}</strong></p>
-        <p>مدة الدوام: <strong>${requiredHours} ساعة</strong></p>
-    `;
-    resultElement.style.display = 'block';
-}
-
-// دالة فتح الحاسبة
-function openCalculator() {
-    // إخفاء جميع المحتويات
-    const contents = document.querySelectorAll('.content-container');
-    contents.forEach(content => {
-        content.style.display = 'none';
-    });
-    
-    // إظهار الحاسبة
-    document.getElementById('calculator-content').style.display = 'block';
-    
-    // إلغاء تحديد أي مرحلة
-    const stages = document.querySelectorAll('.stage-box');
-    stages.forEach(stage => {
-        stage.classList.remove('active-stage');
-    });
-    
-    // تعيين الوقت الحالي كوقت افتراضي للحضور
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    document.getElementById('arrival').value = `${hours}:${minutes}`;
-    
-    showNotification('تم فتح حاسبة الدوام المرن');
-}
-        // تحميل المحتوى
-        function downloadContent() {
-            showNotification('جاري تحميل المحتوى');
-            // هنا يمكن إضافة منطق لتحميل المحتوى
-        }
-        
-        // حفظ المحتوى
-        function saveContent() {
-            showNotification('تم حفظ المحتوى بنجاح');
-            // هنا يمكن إضافة منطق لحفظ المحتوى
-        }
-        
-        // إظهار زر العودة للأعلى عند التمرير
         window.addEventListener('scroll', () => {
-            const backToTopButton = document.getElementById('backToTop');
-            if (window.scrollY > 300) {
+            if (window.pageYOffset > 300) {
                 backToTopButton.classList.add('show');
             } else {
                 backToTopButton.classList.remove('show');
             }
         });
         
-        // التمرير إلى الأعلى عند النقر على الزر
-        document.getElementById('backToTop').addEventListener('click', scrollToTop);
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // وظيفة فتح الحاسبة
+        function openCalculator() {
+            // إخفاء جميع المحتويات
+            const contents = document.querySelectorAll('.content-container');
+            contents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // إظهار محتوى الحاسبة
+            document.getElementById('calculator-content').style.display = 'block';
+            
+            // تحديث حالة الأزرار النشطة
+            const boxes = document.querySelectorAll('.stage-box');
+            boxes.forEach(box => {
+                box.classList.remove('active-stage');
+            });
+            
+            // إظهار إشعار
+            showNotification('تم فتح حاسبة الدوام المرن');
+        }
+        
+        // وظيفة تبديل حقل الجنس
+        function toggleGenderField() {
+            const stage = document.getElementById('stage').value;
+            const genderField = document.getElementById('genderField');
+            
+            if (stage === 'ministry') {
+                genderField.style.display = 'block';
+            } else {
+                genderField.style.display = 'none';
+            }
+        }
+        
+        // وظيفة مساعدة: إضافة دقائق إلى الوقت
+        function addMinutesToTime(timeInMinutes, minutesToAdd) {
+            const totalMinutes = timeInMinutes + minutesToAdd;
+            const hours = Math.floor(totalMinutes / 60) % 24;
+            const minutes = totalMinutes % 60;
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        }
+        
+        // وظيفة مساعدة: تنسيق الوقت
+        function formatTime(timeString) {
+            const [hours, minutes] = timeString.split(':');
+            const hour = parseInt(hours);
+            const period = hour >= 12 ? 'م' : 'ص';
+            const formattedHour = hour % 12 || 12;
+            return `${formattedHour}:${minutes} ${period}`;
+        }
+        
+        // وظيفة حساب الدوام المرن المعدلة
+        function calculateFlexibleSchedule() {
+            const stage = document.getElementById('stage').value;
+            const arrivalTime = document.getElementById('arrival').value;
+            const gender = document.getElementById('gender').value;
+            
+            // إخفاء رسالة الخطأ
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // تحويل وقت الحضور إلى دقائق لتسهيل المقارنة
+            const [hours, minutes] = arrivalTime.split(':').map(Number);
+            const arrivalMinutes = hours * 60 + minutes;
+            
+            let presenceStart, presenceEnd, departure;
+            
+            // جداول البحث لكل مرحلة
+            if (stage === 'kindergarten') {
+                // رياض الأطفال
+                if (arrivalMinutes <= 6*60+45) {
+                    presenceStart = "08:46";
+                    presenceEnd = "09:45";
+                    departure = "11:35";
+                } else if (arrivalMinutes >= 7*60+30) {
+                    presenceStart = "09:31";
+                    presenceEnd = "10:30";
+                    departure = "12:20";
+                } else {
+                    // حساب الوقت بناء على الدقائق بعد 6:45
+                    const minutesAfter645 = arrivalMinutes - (6*60+45);
+                    presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+                    presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+                    departure = addMinutesToTime(6*60+45 + minutesAfter645, 290);
+                }
+            } else if (stage === 'elementary') {
+                // الابتدائية
+                if (arrivalMinutes <= 6*60+45) {
+                    presenceStart = "08:46";
+                    presenceEnd = "09:45";
+                    departure = "12:45";
+                } else if (arrivalMinutes >= 7*60+30) {
+                    presenceStart = "09:31";
+                    presenceEnd = "10:30";
+                    departure = "13:30";
+                } else {
+                    const minutesAfter645 = arrivalMinutes - (6*60+45);
+                    presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+                    presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+                    departure = addMinutesToTime(6*60+45 + minutesAfter645, 360);
+                }
+            } else if (stage === 'middle') {
+                // المتوسطة
+                if (arrivalMinutes <= 6*60+55) {
+                    presenceStart = "08:56";
+                    presenceEnd = "09:55";
+                    departure = "13:05";
+                } else if (arrivalMinutes >= 7*60+40) {
+                    presenceStart = "09:41";
+                    presenceEnd = "10:40";
+                    departure = "13:50";
+                } else {
+                    const minutesAfter655 = arrivalMinutes - (6*60+55);
+                    presenceStart = addMinutesToTime(6*60+55 + minutesAfter655, 121);
+                    presenceEnd = addMinutesToTime(6*60+55 + minutesAfter655, 180);
+                    departure = addMinutesToTime(6*60+55 + minutesAfter655, 370);
+                }
+            } else if (stage === 'high') {
+                // الثانوية
+                if (arrivalMinutes <= 7*60+10) {
+                    presenceStart = "09:11";
+                    presenceEnd = "10:10";
+                    departure = "13:20";
+                } else if (arrivalMinutes >= 7*60+55) {
+                    presenceStart = "09:56";
+                    presenceEnd = "10:55";
+                    departure = "14:05";
+                } else {
+                    const minutesAfter710 = arrivalMinutes - (7*60+10);
+                    presenceStart = addMinutesToTime(7*60+10 + minutesAfter710, 121);
+                    presenceEnd = addMinutesToTime(7*60+10 + minutesAfter710, 180);
+                    departure = addMinutesToTime(7*60+10 + minutesAfter710, 370);
+                }
+            } else if (stage === 'ministry') {
+                // الوزارة والمناطق
+                if (arrivalMinutes <= 7*60+0) {
+                    presenceStart = "09:01";
+                    presenceEnd = "10:00";
+                    departure = (gender === 'female') ? "13:15" : "13:30";
+                } else if (arrivalMinutes >= 8*60+0) {
+                    presenceStart = "10:01";
+                    presenceEnd = "11:00";
+                    departure = (gender === 'female') ? "14:45" : "15:00";
+                } else {
+                    const minutesAfter700 = arrivalMinutes - (7*60+0);
+                    presenceStart = addMinutesToTime(7*60+0 + minutesAfter700, 121);
+                    presenceEnd = addMinutesToTime(7*60+0 + minutesAfter700, 180);
+                    
+                    // حساب وقت الانصراف بناءً على الجنس
+                    if (gender === 'female') {
+                        departure = addMinutesToTime(7*60+0 + minutesAfter700, 375);
+                    } else {
+                        departure = addMinutesToTime(7*60+0 + minutesAfter700, 390);
+                    }
+                }
+            }
+            
+            // عرض النتائج
+            const resultContent = document.getElementById('resultContent');
+            resultContent.innerHTML = `
+                <div class="result-card">
+                    <h3>وقت الحضور</h3>
+                    <div class="time-value">${formatTime(arrivalTime)}</div>
+                </div>
+                <div class="result-card">
+                    <h3>بداية فترة التواجد</h3>
+                    <div class="time-value">${formatTime(presenceStart)}</div>
+                </div>
+                <div class="result-card">
+                    <h3>نهاية فترة التواجد</h3>
+                    <div class="time-value">${formatTime(presenceEnd)}</div>
+                </div>
+                <div class="result-card">
+                    <h3>وقت الانصراف</h3>
+                    <div class="time-value highlight">${formatTime(departure)}</div>
+                </div>
+            `;
+            
+            document.getElementById('calculatorResult').style.display = 'block';
+        }
         
         // تهيئة أولية
-        document.addEventListener('DOMContentLoaded', () => {
-            updateProgressBar(1);
-            
-            // إضافة مستمعي الأحداث لأزرار المراحل
-            const stages = document.querySelectorAll('.stage-box');
-            stages.forEach((stage, index) => {
-                stage.addEventListener('click', () => showContent(index + 1));
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            showContent(1);
+            toggleGenderField();
         });
     </script>
 </body>
-</html>
+</html></html>
