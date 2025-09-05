@@ -778,13 +778,17 @@
         </div>
         
         <!-- أزرار الإجراءات -->
-        <div class="action-buttons">
-            <div class="action-btn" onclick="openCalculator()">
-                <i class="fas fa-calculator"></i>
-                <span>حاسبة الدوام</span>
-            </div>
-        </div>
-        
+<div class="action-buttons">
+    <div class="action-btn" onclick="openCalculator()">
+        <i class="fas fa-calculator"></i>
+        <span>حاسبة الدوام</span>
+    </div>
+    <div class="action-btn" onclick="showContent(6)">
+        <i class="fas fa-calendar-days"></i>
+        <span>مواعيد الدوام</span>
+    </div>
+</div>
+
         <!-- حاسبة الدوام المرن الجديدة -->
         <div class="content-container" id="calculator-content">
             <div class="calculator-container">
@@ -1263,11 +1267,11 @@
         </tr>
         <tr>
             <td>حالة خاصة 3</td>
-            <td>استئذان نهاية الدوام (الاستئذان مبني على وقت الحضور) مثال: حضر المعلم الساعة 7:30 موعد الانصراف 1:30 استأذن الساعة 10:00 يحسب من الساعة 10:00 الى 1:30 استئذانه فتكون مدة الاستئذان ثلاث ساعات ونصف</td>
+            <td>استئذان نهاية الدوام (الاستئذان مبني على وقت الحضور) مثال: حضر المعلم الساعة 7:20 موعد الانصراف 1:20 استأذن الساعة 10:00 يحسب من الساعة 10:00 الى 1:30 استئذانه فتكون مدة الاستئذان ثلاث ساعات ونصف</td>
         </tr>
         <tr>
             <td>حالة خاصة 4</td>
-            <td>للإعفاء من بصمة التواجد يحدد بداية الاستئذان قبل موعد حضوره بساعتين + دقيقة (حضر الساعة 9:25 من الاستئذان الصباحي يحدد البداية 7:24 فيعفي من بصمة التواجد والانصراف 1:24)</td>
+            <td>للإعفاء من بصمة التواجد يحدد بداية الاستئذان قبل موعد حضوره بساعتين + دقيقة (حضر الساعة 9:25 من الاستئذان الصباحي يحدد البداية 7:24 فيعفي من بصمة التواجد والانصراف 1:26)</td>
         </tr>
     </tbody>
 </table>
@@ -2261,7 +2265,279 @@
             <p>مدرسة الشدادية المتوسطة بنين</p>
         </div>
     </div>
-    
+
+
+    <!-- محتوى مواعيد الدوام والامتحانات -->
+<div class="content-container" id="content6">
+    <div class="content-box">
+        <div class="pdf-only">مواعيد دوام العاملين والامتحانات والإجازات للعام الدراسي 2025/2026</div>
+        <h2 class="content-title">مواعيد دوام العاملين والامتحانات والإجازات للعام الدراسي 2025/2026</h2>
+        
+        <div class="content-text">
+            <p>إعداد: د. نواف خالد الزعبي - مدرسة الشدادية المتوسطة بنين</p>
+        </div>
+
+        <h3 class="section-title">مواعيد بدء الدوام للعاملين والطلبة:</h3>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>الفئة</th>
+                    <th>اليوم</th>
+                    <th>التاريخ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>بدء دوام العاملين في المدارس والتوجيه الفني</td>
+                    <td>الأحد</td>
+                    <td>7/9/2025</td>
+                </tr>
+                <tr>
+                    <td>بدء دوام طلبة الصف الأول الابتدائي</td>
+                    <td>الاثنين</td>
+                    <td>15/9/2025</td>
+                </tr>
+                <tr>
+                    <td>بدء دوام باقي صفوف الابتدائية والمتوسطة والثانوية</td>
+                    <td>الثلاثاء</td>
+                    <td>16/9/2025</td>
+                </tr>
+                <tr>
+                    <td>بدء دوام الأطفال في مرحلة رياض الأطفال</td>
+                    <td>الأربعاء</td>
+                    <td>17/9/2025</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-title">إجازات الفصل الدراسي:</h3>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>نوع الإجازة</th>
+                    <th>من</th>
+                    <th>إلى</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>إجازة نصف السنة الدراسية</td>
+                    <td>الأحد 18/1/2026</td>
+                    <td>الخميس 22/1/2026</td>
+                </tr>
+                <tr>
+                    <td>إجازة العشر الأواخر من رمضان</td>
+                    <td>الأحد 15/3/2026</td>
+                    <td>الأربعاء 18/3/2026</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-title">مواعيد التسجيل والنقل:</h3>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>نوع الخدمة</th>
+                    <th>الفترة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>تسجيل طلبات نقل للوظائف الإدارية</td>
+                    <td>من الأحد 5/10/2025 إلى الخميس 6/11/2025<br>من الأحد 5/4/2026 إلى الخميس 7/5/2026</td>
+                </tr>
+                <tr>
+                    <td>الترشيح للوظائف الإشرافية التعليمية</td>
+                    <td>الأحد 2/11/2025</td>
+                </tr>
+                <tr>
+                    <td>تسجيل طلبات نقل الهيئة التعليمية</td>
+                    <td>من الأحد 10/2/2026 إلى الثلاثاء 31/3/2026</td>
+                </tr>
+                <tr>
+                    <td>تسجيل المستجدين / رياض الأطفال</td>
+                    <td>من الأحد 4/1/2026 إلى الأربعاء 25/5/2026</td>
+                </tr>
+                <tr>
+                    <td>تسجيل المستجدين / المرحلة الابتدائية</td>
+                    <td>من الأربعاء 1/4/2026 إلى الأربعاء 30/9/2026</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-title">نهاية الفصول الدراسية وامتحانات نهاية العام:</h3>
+        
+        <h4 class="section-title">رياض الأطفال:</h4>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>المناسبة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الخميس 25/12/2025</td>
+                    <td>نهاية دوام الأطفال للفصل الدراسي الأول</td>
+                </tr>
+                <tr>
+                    <td>الخميس 11/6/2026</td>
+                    <td>نهاية دوام الأطفال للفصل الدراسي الثاني</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4 class="section-title">المرحلة الابتدائية:</h4>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>المناسبة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الخميس 25/12/2025</td>
+                    <td>نهاية دوام الطلبة للفصل الدراسي الأول</td>
+                </tr>
+                <tr>
+                    <td>من الأحد 4/1/2026 إلى الإثنين 12/1/2026</td>
+                    <td>التقييم النهائي للمتغيبين بعذر مقبول في الفصل الدراسي الأول</td>
+                </tr>
+                <tr>
+                    <td>من الأربعاء 3/6/2026 إلى الخميس 11/6/2026</td>
+                    <td>التقييم النهائي للمتغيبين بعذر مقبول في الفصل الدراسي الثاني</td>
+                </tr>
+                <tr>
+                    <td>الخميس 11/6/2026</td>
+                    <td>نهاية دوام الطلبة للفصل الدراسي الثاني</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4 class="section-title">المرحلة المتوسطة:</h4>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>المناسبة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>من الأربعاء 17/12/2025 إلى الخميس 25/12/2025</td>
+                    <td>امتحانات نهاية الفصل الدراسي الأول</td>
+                </tr>
+                <tr>
+                    <td>من الأربعاء 3/6/2026 إلى الخميس 11/6/2026</td>
+                    <td>امتحانات نهاية الفصل الدراسي الثاني</td>
+                </tr>
+                <tr>
+                    <td>من الأحد 28/6/2026 إلى الأحد 5/7/2026</td>
+                    <td>امتحانات الدور الثاني</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4 class="section-title">المرحلة الثانوية:</h4>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>المناسبة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>من الأربعاء 17/12/2025 إلى الإثنين 29/12/2025</td>
+                    <td>امتحانات نهاية الفصل الدراسي الأول للصفين العاشر والحادي عشر</td>
+                </tr>
+                <tr>
+                    <td>من الأحد 4/1/2026 إلى الخميس 15/1/2026</td>
+                    <td>امتحانات نهاية الفصل الدراسي الأول للصف الثاني عشر</td>
+                </tr>
+                <tr>
+                    <td>من الأربعاء 3/6/2026 إلى الإثنين 15/6/2026</td>
+                    <td>امتحانات نهاية الفصل الدراسي الثاني للصف العاشر والحادي عشر</td>
+                </tr>
+                <tr>
+                    <td>من الأربعاء 17/6/2026 إلى الإثنين 29/6/2026</td>
+                    <td>امتحانات نهاية الفصل الدراسي الثاني للصف الثاني عشر</td>
+                </tr>
+                <tr>
+                    <td>من الإثنين 13/7/2026 إلى الأربعاء 22/7/2026</td>
+                    <td>امتحانات الدور الثاني لصفوف النقل ولشهادة الثانوية العامة</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-title">بدء العطلة الصيفية:</h3>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>المناسبة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الإثنين 29/6/2026</td>
+                    <td>آخر يوم دوام رياض الأطفال</td>
+                </tr>
+                <tr>
+                    <td>الخميس 9/7/2026</td>
+                    <td>آخر يوم لدوام المرحلة (الابتدائية - المتوسطة - الثانوية) ما عدا المكلفين بأعمال الثانوية العامة (الدور الثاني)</td>
+                </tr>
+                <tr>
+                    <td>من الخميس 9/7/2026 إلى الخميس 3/9/2026</td>
+                    <td>الموجهون الفنيون للمواد وموجهو الأنشطة التربوية ومشرفو المختبرات في المناطق التعليمية ما عدا المكلفين بأعمال الثانوية العامة (الدور الثاني)</td>
+                </tr>
+                <tr>
+                    <td>الخميس 23/7/2026</td>
+                    <td>المكلفون بأعمال الثانوية العامة (الدور الثاني)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-title">العام الدراسي 2026/2027:</h3>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>الفئة</th>
+                    <th>اليوم</th>
+                    <th>التاريخ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>بدء دوام العاملين في المدارس والتوجيه الفني</td>
+                    <td>الأحد</td>
+                    <td>6/9/2026</td>
+                </tr>
+                <tr>
+                    <td>بدء دوام طلبة الصف الأول الابتدائي</td>
+                    <td>الأحد</td>
+                    <td>13/9/2026</td>
+                </tr>
+                <tr>
+                    <td>بدء دوام باقي صفوف الابتدائية والمتوسطة والثانوية</td>
+                    <td>الإثنين</td>
+                    <td>14/9/2026</td>
+                </tr>
+                <tr>
+                    <td>بدء دوام الأطفال في مرحلة رياض الأطفال</td>
+                    <td>الأربعاء</td>
+                    <td>16/9/2026</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <p><strong>ملاحظة:</strong> هذه المواعيد قابلة للتغيير حسب ما تصدره وزارة التربية والتعليم من تعاميم وقرارات جديدة.</p>
+        </div>
+    </div>
+</div>
+
    <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
@@ -2272,32 +2548,46 @@
     
     <script>
         // وظيفة لإظهار المحتوى المحدد وإخفاء الآخرين
-        function showContent(contentId) {
-            // إخفاء جميع المحتويات
-            const contents = document.querySelectorAll('.content-container');
-            contents.forEach(content => {
-                content.style.display = 'none';
-            });
-            
-            // إظهار المحتوى المحدد
-            document.getElementById('content' + contentId).style.display = 'block';
-            
-            // تحديث حالة الأزرار النشطة
-            const boxes = document.querySelectorAll('.stage-box');
-            boxes.forEach((box, index) => {
-                if (index + 1 === contentId) {
-                    box.classList.add('active-stage');
-                } else {
-                    box.classList.remove('active-stage');
-                }
-            });
-            
-            // تحديث شريط التقدم
-            updateProgressBar(contentId);
-            
-            // إظهار إشعار
-            showNotification('تم تحميل محتوى المرحلة المطلوبة');
-        }
+ function showContent(contentId) {
+    // إخفاء جميع المحتويات
+    const contents = document.querySelectorAll('.content-container');
+    contents.forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // إظهار المحتوى المحدد
+    document.getElementById('content' + contentId).style.display = 'block';
+    
+    // تحديث حالة الأزرار النشطة (للمراحل فقط، ليس للحاسبة أو المواعيد)
+    if (contentId >= 1 && contentId <= 5) {
+        const boxes = document.querySelectorAll('.stage-box');
+        boxes.forEach((box, index) => {
+            if (index + 1 === contentId) {
+                box.classList.add('active-stage');
+            } else {
+                box.classList.remove('active-stage');
+            }
+        });
+    } else {
+        // إزالة النشاط من جميع صناديق المراحل
+        const boxes = document.querySelectorAll('.stage-box');
+        boxes.forEach(box => {
+            box.classList.remove('active-stage');
+        });
+    }
+    
+    // تحديث شريط التقدم (للمراحل فقط)
+    if (contentId >= 1 && contentId <= 5) {
+        updateProgressBar(contentId);
+    }
+    
+    // إظهار إشعار
+    let message = 'تم تحميل المحتوى المطلوب';
+    if (contentId === 6) {
+        message = 'تم تحميل مواعيد الدوام والامتحانات';
+    }
+    showNotification(message);
+}
         
         // وظيفة تحديث شريط التقدم
         function updateProgressBar(contentId) {
@@ -2400,95 +2690,85 @@ function calculateFlexibleSchedule() {
     const [hours, minutes] = arrivalTime.split(':').map(Number);
     const arrivalMinutes = hours * 60 + minutes;
     
-    let presenceStart, presenceEnd, departure;
+    let presenceText, departure;
+    let isExempt = false;
     
-    // جداول البحث لكل مرحلة
+    // تحديد الإعفاء من البصمة بناءً على المرحلة ووقت الحضور
     if (stage === 'kindergarten') {
-        // رياض الأطفال
+        // رياض الأطفال: الإعفاء من 9:31 فما فوق
+        if (arrivalMinutes >= 9*60+31) {
+            isExempt = true;
+            presenceText = "معفي من بصمة التواجد";
+        }
+        
         if (arrivalMinutes <= 6*60+45) {
-            presenceStart = "08:46";
-            presenceEnd = "09:45";
             departure = "11:35";
         } else if (arrivalMinutes >= 7*60+30) {
-            presenceStart = "09:31";
-            presenceEnd = "10:30";
             departure = "12:20";
         } else {
-            // حساب الوقت بناء على الدقائق بعد 6:45
             const minutesAfter645 = arrivalMinutes - (6*60+45);
-            presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
-            presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
             departure = addMinutesToTime(6*60+45 + minutesAfter645, 290);
         }
     } else if (stage === 'elementary') {
-        // الابتدائية
+        // الابتدائية: الإعفاء من 9:31 فما فوق
+        if (arrivalMinutes >= 9*60+31) {
+            isExempt = true;
+            presenceText = "معفي من بصمة التواجد";
+        }
+        
         if (arrivalMinutes <= 6*60+45) {
-            presenceStart = "08:46";
-            presenceEnd = "09:45";
             departure = "12:45";
         } else if (arrivalMinutes >= 7*60+30) {
-            presenceStart = "09:31";
-            presenceEnd = "10:30";
             departure = "13:30";
         } else {
             const minutesAfter645 = arrivalMinutes - (6*60+45);
-            presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
-            presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
             departure = addMinutesToTime(6*60+45 + minutesAfter645, 360);
         }
     } else if (stage === 'middle') {
-        // المتوسطة
+        // المتوسطة: الإعفاء من 9:41 فما فوق
+        if (arrivalMinutes >= 9*60+41) {
+            isExempt = true;
+            presenceText = "معفي من بصمة التواجد";
+        }
+        
         if (arrivalMinutes <= 6*60+55) {
-            presenceStart = "08:56";
-            presenceEnd = "09:55";
             departure = "13:05";
         } else if (arrivalMinutes >= 7*60+40) {
-            presenceStart = "09:41";
-            presenceEnd = "10:40";
             departure = "13:50";
         } else {
             const minutesAfter655 = arrivalMinutes - (6*60+55);
-            presenceStart = addMinutesToTime(6*60+55 + minutesAfter655, 121);
-            presenceEnd = addMinutesToTime(6*60+55 + minutesAfter655, 180);
             departure = addMinutesToTime(6*60+55 + minutesAfter655, 370);
         }
     } else if (stage === 'high') {
-        // الثانوية
+        // الثانوية: الإعفاء من 9:56 فما فوق
+        if (arrivalMinutes >= 9*60+56) {
+            isExempt = true;
+            presenceText = "معفي من بصمة التواجد";
+        }
+        
         if (arrivalMinutes <= 7*60+10) {
-            presenceStart = "09:11";
-            presenceEnd = "10:10";
             departure = "13:20";
         } else if (arrivalMinutes >= 7*60+55) {
-            presenceStart = "09:56";
-            presenceEnd = "10:55";
             departure = "14:05";
         } else {
             const minutesAfter710 = arrivalMinutes - (7*60+10);
-            presenceStart = addMinutesToTime(7*60+10 + minutesAfter710, 121);
-            presenceEnd = addMinutesToTime(7*60+10 + minutesAfter710, 180);
             departure = addMinutesToTime(7*60+10 + minutesAfter710, 370);
         }
     } else if (stage === 'ministry') {
-        // الوزارة والمناطق
+        // الوزارة والمناطق: الإعفاء من 10:01 فما فوق
+        if (arrivalMinutes >= 10*60+1) {
+            isExempt = true;
+            presenceText = "معفي من بصمة التواجد";
+        }
+        
         if (arrivalMinutes <= 7*60+0) {
-            presenceStart = "09:01";
-            presenceEnd = "10:00";
             departure = (gender === 'female') ? "13:15" : "13:30";
         } else if (arrivalMinutes === 8*60+0) {
-            // الحالة الخاصة للحضور الساعة 8:00
-            presenceStart = "10:01";
-            presenceEnd = "11:00";
             departure = (gender === 'female') ? "14:15" : "14:30";
         } else if (arrivalMinutes >= 8*60+1) {
-            presenceStart = "10:01";
-            presenceEnd = "11:00";
             departure = (gender === 'female') ? "14:45" : "15:00";
         } else {
             const minutesAfter700 = arrivalMinutes - (7*60+0);
-            presenceStart = addMinutesToTime(7*60+0 + minutesAfter700, 121);
-            presenceEnd = addMinutesToTime(7*60+0 + minutesAfter700, 180);
-            
-            // حساب وقت الانصراف بناءً على الجنس
             if (gender === 'female') {
                 departure = addMinutesToTime(7*60+0 + minutesAfter700, 375);
             } else {
@@ -2497,26 +2777,113 @@ function calculateFlexibleSchedule() {
         }
     }
     
+    // إذا لم يكن معفيًا، حساب فترة التواجد بشكل طبيعي
+    let presenceStart, presenceEnd;
+    if (!isExempt) {
+        if (stage === 'kindergarten') {
+            if (arrivalMinutes <= 6*60+45) {
+                presenceStart = "08:46";
+                presenceEnd = "09:45";
+            } else if (arrivalMinutes >= 7*60+30) {
+                presenceStart = "09:31";
+                presenceEnd = "10:30";
+            } else {
+                const minutesAfter645 = arrivalMinutes - (6*60+45);
+                presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+                presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+            }
+        } else if (stage === 'elementary') {
+            if (arrivalMinutes <= 6*60+45) {
+                presenceStart = "08:46";
+                presenceEnd = "09:45";
+            } else if (arrivalMinutes >= 7*60+30) {
+                presenceStart = "09:31";
+                presenceEnd = "10:30";
+            } else {
+                const minutesAfter645 = arrivalMinutes - (6*60+45);
+                presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+                presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+            }
+        } else if (stage === 'middle') {
+            if (arrivalMinutes <= 6*60+55) {
+                presenceStart = "08:56";
+                presenceEnd = "09:55";
+            } else if (arrivalMinutes >= 7*60+40) {
+                presenceStart = "09:41";
+                presenceEnd = "10:40";
+            } else {
+                const minutesAfter655 = arrivalMinutes - (6*60+55);
+                presenceStart = addMinutesToTime(6*60+55 + minutesAfter655, 121);
+                presenceEnd = addMinutesToTime(6*60+55 + minutesAfter655, 180);
+            }
+        } else if (stage === 'high') {
+            if (arrivalMinutes <= 7*60+10) {
+                presenceStart = "09:11";
+                presenceEnd = "10:10";
+            } else if (arrivalMinutes >= 7*60+55) {
+                presenceStart = "09:56";
+                presenceEnd = "10:55";
+            } else {
+                const minutesAfter710 = arrivalMinutes - (7*60+10);
+                presenceStart = addMinutesToTime(7*60+10 + minutesAfter710, 121);
+                presenceEnd = addMinutesToTime(7*60+10 + minutesAfter710, 180);
+            }
+        } else if (stage === 'ministry') {
+            if (arrivalMinutes <= 7*60+0) {
+                presenceStart = "09:01";
+                presenceEnd = "10:00";
+            } else if (arrivalMinutes === 8*60+0) {
+                presenceStart = "10:01";
+                presenceEnd = "11:00";
+            } else if (arrivalMinutes >= 8*60+1) {
+                presenceStart = "10:01";
+                presenceEnd = "11:00";
+            } else {
+                const minutesAfter700 = arrivalMinutes - (7*60+0);
+                presenceStart = addMinutesToTime(7*60+0 + minutesAfter700, 121);
+                presenceEnd = addMinutesToTime(7*60+0 + minutesAfter700, 180);
+            }
+        }
+    }
+    
     // عرض النتائج
     const resultContent = document.getElementById('resultContent');
-    resultContent.innerHTML = `
-        <div class="result-card">
-            <h3>وقت الحضور</h3>
-            <div class="time-value">${formatTime(arrivalTime)}</div>
-        </div>
-        <div class="result-card">
-            <h3>بداية فترة التواجد</h3>
-            <div class="time-value">${formatTime(presenceStart)}</div>
-        </div>
-        <div class="result-card">
-            <h3>نهاية فترة التواجد</h3>
-            <div class="time-value">${formatTime(presenceEnd)}</div>
-        </div>
-        <div class="result-card">
-            <h3>وقت الانصراف</h3>
-            <div class="time-value highlight">${formatTime(departure)}</div>
-        </div>
-    `;
+    
+    if (isExempt) {
+        resultContent.innerHTML = `
+            <div class="result-card">
+                <h3>وقت الحضور</h3>
+                <div class="time-value">${formatTime(arrivalTime)}</div>
+            </div>
+            <div class="result-card">
+                <h3>حالة التواجد</h3>
+                <div class="time-value highlight">${presenceText}</div>
+            </div>
+            <div class="result-card">
+                <h3>وقت الانصراف</h3>
+                <div class="time-value">${formatTime(departure)}</div>
+            </div>
+        `;
+    } else {
+        resultContent.innerHTML = `
+            <div class="result-card">
+                <h3>وقت الحضور</h3>
+                <div class="time-value">${formatTime(arrivalTime)}</div>
+            </div>
+            <div class="result-card">
+                <h3>بداية فترة التواجد</h3>
+                <div class="time-value">${formatTime(presenceStart)}</div>
+            </div>
+            <div class="result-card">
+                <h3>نهاية فترة التواجد</h3>
+                <div class="time-value">${formatTime(presenceEnd)}</div>
+            </div>
+            <div class="result-card">
+                <h3>وقت الانصراف</h3>
+                <div class="time-value highlight">${formatTime(departure)}</div>
+            </div>
+        `;
+    }
     
     document.getElementById('calculatorResult').style.display = 'block';
 }
