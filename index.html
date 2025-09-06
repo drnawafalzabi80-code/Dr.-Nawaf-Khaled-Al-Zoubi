@@ -160,43 +160,47 @@
             color: white;
         }
         
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* تقليل المسافة بين الأزرار */
+    margin: 20px 0;
+    flex-wrap: wrap; /* السماح بلف الأزرار إذا لم تتسع */
+}
         
-        .action-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #2980b9, #3498db);
-        }
-        
-        .action-btn i {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-        }
-        
-        .action-btn span {
-            font-size: 0.9rem;
-        }
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75px; /* تقليل الحجم قليلاً */
+    height: 75px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin: 0 2px; /* إضافة هوامش أفقية صغيرة */
+}
+
+.action-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+.action-btn i {
+    font-size: 1.6rem; /* تقليل حجم الأيقونة */
+    margin-bottom: 6px; /* تقليل المسافة تحت الأيقونة */
+}
+
+.action-btn span {
+    font-size: 0.85rem; /* تقليل حجم النص */
+    text-align: center;
+    line-height: 1.2;
+}
         
         .active-stage {
             transform: scale(1.05);
@@ -664,7 +668,69 @@
             color: #ffd700;
             font-weight: bold;
         }
-        
+       
+/* تنسيقات التذييل */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author-info p {
+    margin: 5px 0;
+}
+
+/* تنسيقات رواض التواصل الاجتماعي */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.social-link i {
+    font-size: 1.3rem;
+}
+
+/* تنسيق للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .social-links {
+        gap: 15px;
+    }
+    
+    .social-link {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-link i {
+        font-size: 1.1rem;
+    }
+} 
         /* تصميم جديد لنتائج الحاسبة */
         .result-flex-container {
             display: flex;
@@ -735,7 +801,6 @@
                     <h3 class="stage-title">رياض الأطفال</h3>
                 </div>
             </div>
-            
             <!-- الابتدائية -->
             <div class="stage-box" onclick="showContent(2)">
                 <div class="stage-header">
@@ -744,8 +809,7 @@
                     </div>
                     <h3 class="stage-title">الابتدائية</h3>
                 </div>
-            </div>
-            
+            </div>         
             <!-- المتوسطة -->
             <div class="stage-box" onclick="showContent(3)">
                 <div class="stage-header">
@@ -754,8 +818,7 @@
                     </div>
                     <h3 class="stage-title">المتوسطة</h3>
                 </div>
-            </div>
-            
+            </div>           
             <!-- الثانوية -->
             <div class="stage-box" onclick="showContent(4)">
                 <div class="stage-header">
@@ -764,8 +827,7 @@
                     </div>
                     <h3 class="stage-title">الثانوية</h3>
                 </div>
-            </div>
-            
+            </div>           
             <!-- الوزارة والمناطق -->
             <div class="stage-box" onclick="showContent(5)">
                 <div class="stage-header">
@@ -776,16 +838,23 @@
                 </div>
             </div>
         </div>
-        
         <!-- أزرار الإجراءات -->
 <div class="action-buttons">
     <div class="action-btn" onclick="openCalculator()">
         <i class="fas fa-calculator"></i>
         <span>حاسبة الدوام</span>
     </div>
+
+    <!-- زر مواعيد الدوام -->
     <div class="action-btn" onclick="showContent(6)">
         <i class="fas fa-calendar-days"></i>
         <span>مواعيد الدوام</span>
+    </div>
+    
+    <!-- زر الإجازات الرسمية -->
+    <div class="action-btn" onclick="showContent(7)">
+        <i class="fas fa-calendar-check"></i>
+        <span>الإجازات الرسمية</span>
     </div>
 </div>
 
@@ -2260,12 +2329,6 @@
             </div>
         </div>
         
-        <div class="footer">
-            <p>العام الدراسي 2025/2026 - إعداد د. نواف خالد الزعبي</p>
-            <p>مدرسة الشدادية المتوسطة بنين</p>
-        </div>
-    </div>
-
 
     <!-- محتوى مواعيد الدوام والامتحانات -->
 <div class="content-container" id="content6">
@@ -2533,7 +2596,7 @@
         </table>
 
         <div class="note">
-            <p><strong>ملاحظة:</strong> هذه المواعيد قابلة للتغيير حسب ما تصدره وزارة التربية والتعليم من تعاميم وقرارات جديدة.</p>
+            <p><strong>ملاحظة:</strong> هذه المواعيد قابلة للتغيير حسب ما تصدره وزارة التربية من تعاميم وقرارات جديدة.</p>
         </div>
     </div>
 </div>
@@ -2545,7 +2608,72 @@
     <div class="notification" id="notification">
         <span id="notificationText"></span>
     </div>
-    
+
+<!-- اضافة قسم الإجازات الرسمية هنا -->
+<div class="content-container" id="content7">
+    <div class="content-box">
+        <div class="pdf-only">الإجازات الرسمية في الكويت العام 2026</div>
+        <h2 class="content-title">الإجازات الرسمية في الكويت العام 2026</h2>
+        
+        <div class="content-text">
+            <p>إعداد: د. نواف خالد الزعبي - مدرسة الشدادية المتوسطة بنين</p>
+        </div>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>اليوم</th>
+                    <th>التاريخ</th>
+                    <th>المناسبة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>الخميس</td><td>2026/1/1</td><td>رأس السنة الميلادية</td></tr>
+                <tr><td>الأحد</td><td>2026/1/18</td><td>الإسراء والمعراج</td></tr>
+                <tr><td>الأربعاء</td><td>2026/2/25</td><td>العيد الوطني</td></tr>
+                <tr><td>الخميس</td><td>2026/2/26</td><td>يوم التحرير</td></tr>
+                <tr><td>من الأحد</td><td>2026/3/15</td><td>إجازة خاصة (آخر شهر رمضان)</td></tr>
+                <tr><td>إلى الأربعاء</td><td>2026/3/18</td><td>إجازة خاصة (آخر شهر رمضان)</td></tr>
+                <tr><td>الجمعة</td><td>2026/3/20</td><td>أول أيام عيد الفطر المبارك</td></tr>
+                <tr><td>السبت</td><td>2026/3/21</td><td>ثاني أيام عيد الفطر المبارك</td></tr>
+                <tr><td>الأحد</td><td>2026/3/22</td><td>ثالث أيام عيد الفطر المبارك</td></tr>
+                <tr><td>الاثنين</td><td>2026/3/23</td><td>بدل الجمعة</td></tr>
+                <tr><td>الثلاثاء</td><td>2026/5/26</td><td>الوقوف بعرفة</td></tr>
+                <tr><td>الأربعاء</td><td>2026/5/27</td><td>أول أيام عيد الأضحى المبارك</td></tr>
+                <tr><td>الخميس</td><td>2026/5/28</td><td>ثاني أيام عيد الأضحى المبارك</td></tr>
+                <tr><td>الجمعة</td><td>2026/5/29</td><td>ثالث أيام عيد الأضحى المبارك</td></tr>
+                <tr><td>السبت</td><td>2026/5/30</td><td>بين عطلتين</td></tr>
+                <tr><td>الأحد</td><td>2026/5/31</td><td>بدل الجمعة</td></tr>
+                <tr><td>الثلاثاء</td><td>2026/6/16</td><td>رأس السنة الهجرية</td></tr>
+                <tr><td>الخميس</td><td>2026/8/27</td><td>عطلة المولد النبوي</td></tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <p><strong>ملاحظة مهمة:</strong> بعض مواعيد العطل قابلة للتعديل وفقا لصدور قرار من مجلس الوزراء</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="footer-content">
+        <div class="author-info">
+            <p>العام الدراسي 2025/2026 - إعداد د. نواف خالد الزعبي</p>
+            <p>مدرسة الشدادية المتوسطة بنين</p>
+            
+            <!-- إضافة أيقونات التواصل هنا -->
+            <div class="social-links">
+                <a href="https://www.instagram.com/dr_alz3bi?igsh=MzZhMHB5amwyYm5y" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://t.me/dr88nawaf" target="_blank" class="social-link">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script>
         // وظيفة لإظهار المحتوى المحدد وإخفاء الآخرين
  function showContent(contentId) {
@@ -2558,7 +2686,7 @@
     // إظهار المحتوى المحدد
     document.getElementById('content' + contentId).style.display = 'block';
     
-    // تحديث حالة الأزرار النشطة (للمراحل فقط، ليس للحاسبة أو المواعيد)
+    // تحديث حالة الأزرار النشطة (للمراحل فقط)
     if (contentId >= 1 && contentId <= 5) {
         const boxes = document.querySelectorAll('.stage-box');
         boxes.forEach((box, index) => {
@@ -2585,6 +2713,8 @@
     let message = 'تم تحميل المحتوى المطلوب';
     if (contentId === 6) {
         message = 'تم تحميل مواعيد الدوام والامتحانات';
+    } else if (contentId === 7) {
+        message = 'تم تحميل الإجازات الرسمية';
     }
     showNotification(message);
 }
