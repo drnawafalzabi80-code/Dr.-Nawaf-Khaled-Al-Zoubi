@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحليل زوار موقع الدكتور نواف الزعبي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #4a6491;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 i {
+            color: var(--accent-color);
+        }
+        
+        .counter {
+            font-size: 3.5rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin: 25px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter-label {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-box {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+        
+        .visitor-chart {
+            height: 250px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .bar {
+            width: 40px;
+            background: linear-gradient(to top, var(--accent-color), var(--secondary-color));
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: height 0.5s ease;
+        }
+        
+        .bar span {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--dark-color);
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            background-color: rgba(255, 235, 59, 0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .warning-box {
+            background-color: #ffecb3;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+            border-left: 5px solid var(--warning-color);
+        }
+        
+        .warning-box h3 {
+            color: var(--warning-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        ol, ul {
+            padding-right: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .steps {
+            margin-top: 30px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: var(--accent-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .button i {
+            margin-left: 8px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .info-text {
+            color: var(--secondary-color);
+            font-style: italic;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>تحليل زوار موقع الدكتور نواف الزعبي</h1>
+            <p class="header-description">هذه الصفحة تشرح كيفية تتبع عدد الزوار وتقدم نصائح لزيادة الحركة</p>
+        </header>
+
+        <div class="main-content">
+            <div class="card">
+                <h2><i class="fas fa-chart-line"></i> إحصائيات الزوار</h2>
+                <div class="counter">1,247</div>
+                <p class="counter-label">إجمالي عدد الزوار منذ الإنشاء</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">64%</div>
+                        <div class="stat-label">زوار جدد</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">36%</div>
+                        <div class="stat-label">زوار عائدون</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">2:45</div>
+                        <div class="stat-label">مدة المتوسط</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">58%</div>
+                        <div class="stat-label">معدل الارتداد</div>
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-chart-bar"></i> حركة الزوار خلال الأسبوع </h3>
+                <div class="visitor-chart">
+                    <div class="bar" style="height: 70%;">
+                        <div class="bar-value">70</div>
+                        <span>السبت</span>
+                    </div>
+                    <div class="bar" style="height: 85%;">
+                        <div class="bar-value">85</div>
+                        <span>الأحد</span>
+                    </div>
+                    <div class="bar" style="height: 65%;">
+                        <div class="bar-value">65</div>
+                        <span>الإثنين</span>
+                    </div>
+                    <div class="bar" style="height: 90%;">
+                        <div class="bar-value">90</div>
+                        <span>الثلاثاء</span>
+                    </div>
+                    <div class="bar" style="height: 75%;">
+                        <div class="bar-value">75</div>
+                        <span>الأربعاء</span>
+                    </div>
+                    <div class="bar" style="height: 60%;">
+                        <div class="bar-value">60</div>
+                        <span>الخميس</span>
+                    </div>
+                    <div class="bar" style="height: 40%;">
+                        <div class="bar-value">40</div>
+                        <span>الجمعة</span>
+                    </div>
+                </div>
+            </div>
+                
+                <h2><i class="fas fa-lightbulb"></i> نصائح لزيادة الزوار</h2>
+                <ul>
+                    <li>تحسين محركات البحث (SEO) لظهور أفضل في نتائج البحث</li>
+                    <li>إنشاء محتوى قيم ومحدث بانتظام لجذب الزوار</li>
+                    <li>مشاركة المحتوى على منصات التواصل الاجتماعي</li>
+                    <li>التعاون مع مواقع ومتخصصين في مجالك</li>
+                    <li>استخدام الكلمات المفتاحية المناسبة في المحتوى</li>
+                    <li>تحسين سرعة موقعك وتجربة المستخدم</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-cogs"></i> خطوات إضافة Google Analytics</h2>
+            <p class="info-text">اتبع هذه الخطوات للحصول على إحصائيات حقيقية عن زوار موقعك</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>إنشاء حساب Google Analytics</h4>
+                        <p>اذهب إلى <a href="https://analytics.google.com/" target="_blank">Google Analytics</a> وأنشئ حسابًا جديدًا باستخدام بريدك الجيمايل.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>إضافة بيانات موقعك</h4>
+                        <p>أدخل معلومات موقعك بما في ذلك العنوان (URL) واسم الموقع.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>الحصول على كود التتبع</h4>
+                        <p>انسخ كود التتبع الذي يبدأ بـ <code>G-</code> والذي ستحتاج إلى إضافته لموقعك.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>إضافة الكود إلى موقعك</h4>
+                        <p>أضف كود التتبع إلى جميع صفحات موقعك قبل وسوم <code>&lt;/head&gt;</code>.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>التحقق والانتظار</h4>
+                        <p>تحقق من عمل الكود بشكل صحيح وانتظر 24-48 ساعة لبدء رؤية البيانات الحقيقية.</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="text-center">
+                <a href="https://analytics.google.com/" target="_blank" class="button">
+                    الذهاب إلى Google Analytics <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://drnawafalzabi80-code.github.io/Dr.-Nawaf-Khaled-Al-Zoubi/" class="button" style="background: var(--secondary-color);">
+                    العودة إلى الموقع الرئيسي <i class="fas fa-home"></i>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 - موقع الدكتور نواف الزعبي. هذه الصفحة لأغراض توضيحية فقط.</p>
+        </footer>
+    </div>
+
+    <script>
+        // كود JavaScript بسيط لمحاكاة عداد الزوار
+        let counterElement = document.querySelector('.counter');
+        let count = 1247;
+        
+        // زيادة العداد كل بضع ثواني لمحاكاة الزيارات الجديدة
+        setInterval(() => {
+            count += Math.floor(Math.random() * 3);
+            counterElement.textContent = count.toLocaleString();
+        }, 5000);
+        
+        // تأثير تحريك الأشرطة عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                const height = bar.style.height;
+                bar.style.height = '0';
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
