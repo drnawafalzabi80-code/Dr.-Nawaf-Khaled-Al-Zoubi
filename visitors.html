@@ -51,6 +51,12 @@
             color: var(--primary-color);
             margin: 20px 0;
             font-weight: bold;
+            transition: all 0.5s ease;
+        }
+        
+        .counter-updating {
+            color: var(--accent-color);
+            transform: scale(1.05);
         }
         
         .counter-label {
@@ -164,6 +170,12 @@
             margin-right: 8px;
         }
         
+        .update-info {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+        
         @media (max-width: 768px) {
             .visitor-chart {
                 height: 200px;
@@ -203,6 +215,7 @@
         
         <div class="counter">40,247</div>
         <p class="counter-label">إجمالي عدد الزوار</p>
+        <p class="update-info">سيتم تحديث العدد تلقائياً كل 20 ثانية</p>
         
         <h2>حركة الزوار خلال الأسبوع</h2>
         <div class="visitor-chart">
@@ -261,15 +274,31 @@
     </div>
 
     <script>
-        // كود JavaScript بسيط لمحاكاة عداد الزوار
+        // كود JavaScript لعرض وتحديث عداد الزوار
         let counterElement = document.querySelector('.counter');
         let count = 40247;
         
-        // زيادة العداد كل 20 ثانية لمحاكاة الزيارات الجديدة
-        setInterval(() => {
+        // تحديث العداد فور تحميل الصفحة
+        updateCounter();
+        
+        // زيادة العداد كل 20 ثانية
+        setInterval(updateCounter, 20000); // 20000 ميلي ثانية = 20 ثانية
+        
+        function updateCounter() {
+            // زيادة العداد
             count += Math.floor(Math.random() * 5) + 1;
+            
+            // إضافة تأثير التحديث
+            counterElement.classList.add('counter-updating');
+            
+            // تحديث القيمة مع فواصل الآلاف
             counterElement.textContent = count.toLocaleString();
-        }, 20000); // 20000 ميلي ثانية = 20 ثانية
+            
+            // إزالة تأثير التحديث بعد نصف ثانية
+            setTimeout(() => {
+                counterElement.classList.remove('counter-updating');
+            }, 500);
+        }
         
         // تأثير تحريك الأشرطة عند التحميل
         document.addEventListener('DOMContentLoaded', function() {
