@@ -200,11 +200,27 @@
     <script>
         // كود JavaScript لعرض وتحديث عداد الزوار
         let counterElement = document.querySelector('.counter');
-        let count = 40550;
+        
+        // الحصول على القيمة المحفوظة أو استخدام القيمة الافتراضية
+        let count = localStorage.getItem('visitorCount');
+        if (count === null) {
+            count = 40550; // القيمة الافتراضية إذا لم توجد قيمة محفوظة
+        } else {
+            count = parseInt(count);
+        }
+        
+        // عرض القيمة الحالية
+        counterElement.textContent = count.toLocaleString();
         
         // زيادة العداد كل 20 ثانية
         setInterval(() => {
+            // زيادة العداد
             count += Math.floor(Math.random() * 5) + 1;
+            
+            // حفظ القيمة الجديدة في localStorage
+            localStorage.setItem('visitorCount', count);
+            
+            // تحديث العرض
             counterElement.textContent = count.toLocaleString();
         }, 20000); // 20000 ميلي ثانية = 20 ثانية
     </script>
