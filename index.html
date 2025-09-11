@@ -2676,21 +2676,8 @@
 
 <div class="visitor-counter">
     <span style="font-size: 1.5rem; color: #fdbb2d; margin-left: 8px;"><i class="fas fa-users"></i></span>
-    <span id="visits" style="font-size: 1.1rem; font-weight: bold; color: white;"></span>
+    <span id="visits" style="font-size: 1.1rem; font-weight: bold; color: white;">50,000+</span>
 </div>
-<style>
-    .visitor-counter {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        margin-top: 15px;
-        background: #2c3e50;
-        padding: 10px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-</style>
 
     <script>
         // وظيفة لإظهار المحتوى المحدد وإخفاء الآخرين
@@ -3043,22 +3030,47 @@ function calculateFlexibleSchedule() {
         toggleGenderField();
     });
 
-    // كود عداد الزوار
-    const initialCount = 50000;
-    fetch('counter.txt')
-        .then(response => response.text())
-        .then(data => {
-            const currentCount = parseInt(data, 10);
-            const displayCount = currentCount + initialCount;
-            document.getElementById('visits').innerText = displayCount;
-        })
-        .catch(error => {
-            console.error('Error reading visitor count:', error);
-            document.getElementById('visits').innerText = initialCount;
-        });
+// عدّاد زوار مبسط باستخدام localStorage
+function updateVisitorCounter() {
+    const counterElement = document.getElementById('visits');
+    if (!counterElement) return;
+    
+    try {
+        // زيادة العداد مع منع التلاعب (زيادة مرة واحدة يوميًا لكل زائر)
+        const today = new Date().toDateString();
+        const lastVisit = localStorage.getItem('lastVisit');
+        const storedCount = localStorage.getItem('visitorCount');
+        const baseCount = 50000;
+        
+        let currentCount = baseCount;
+        
+        if (storedCount) {
+            currentCount = parseInt(storedCount);
+        }
+        
+        if (lastVisit !== today) {
+            // زيادة العداد إذا كانت هذه أول زيارة اليوم لهذا المستخدم
+            currentCount += 1;
+            localStorage.setItem('visitorCount', currentCount);
+            localStorage.setItem('lastVisit', today);
+        }
+        
+        // عرض العداد مع فواصل للألوف
+        counterElement.textContent = currentCount.toLocaleString();
+        
+    } catch (error) {
+        // في حالة وجود خطأ، عرض الرقم الأساسي
+        console.error('Error updating visitor counter:', error);
+        counterElement.textContent = '50,000+';
+    }
+}
+
+// تحديث العداد عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', updateVisitorCounter);
 </script>
 </body>
 </html>
+
 
 
 
