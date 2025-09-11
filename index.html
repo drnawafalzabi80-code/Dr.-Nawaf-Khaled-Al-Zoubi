@@ -3043,9 +3043,23 @@ function calculateFlexibleSchedule() {
             toggleGenderField();
         });
     </script>
-    <script src="counter.js"></script>
+<script>
+    const initialCount = 50000;
+    fetch('counter.txt')
+        .then(response => response.text())
+        .then(data => {
+            const currentCount = parseInt(data, 10);
+            const displayCount = currentCount + initialCount;
+            document.getElementById('visits').innerText = displayCount;
+        })
+        .catch(error => {
+            console.error('Error reading visitor count:', error);
+            document.getElementById('visits').innerText = initialCount;
+        });
+</script>
 </body>
 </html>
+
 
 
 
