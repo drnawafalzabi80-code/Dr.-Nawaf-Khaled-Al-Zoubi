@@ -24,6 +24,6 @@ function displayVisitorCount() {
 }
  
 // Ensure the function runs after the page loads
-
 document.addEventListener('DOMContentLoaded', displayVisitorCount);
+
 
