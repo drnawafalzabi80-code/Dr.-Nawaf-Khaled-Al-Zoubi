@@ -3036,30 +3036,15 @@ function calculateFlexibleSchedule() {
     document.getElementById('calculatorResult').style.display = 'block';
 }       
 
-<script>
-    // تهيئة أولية
-    document.addEventListener('DOMContentLoaded', function() {
-        showContent(1);
-        toggleGenderField();
-    });
-
-    // كود عداد الزوار
-    const initialCount = 50000;
-    fetch('counter.txt')
-        .then(response => response.text())
-        .then(data => {
-            const currentCount = parseInt(data, 10);
-            const displayCount = currentCount + initialCount;
-            document.getElementById('visits').innerText = displayCount;
-        })
-        .catch(error => {
-            console.error('Error reading visitor count:', error);
-            document.getElementById('visits').innerText = initialCount;
+// تهيئة أولية
+        document.addEventListener('DOMContentLoaded', function() {
+            showContent(1);
+            toggleGenderField();
         });
-</script>
+    </script>
+    <script src="counter.js"></script>
 </body>
 </html>
-
 
 
 
