@@ -1,29 +1,22 @@
-// Function to get and display the visitor count
-function displayVisitorCount() {
-    const namespace = 'drnawafalzabi-counter';
-    const initialCount = 50000;
+const fs = require('fs');
 
-    fetch(`https://api.countapi.xyz/hit/${namespace}/visits`)
-        .then(response => response.json())
-        .then(data => {
-            const currentCount = data.value;
-            const displayCount = currentCount + initialCount;
-            const visitsElement = document.getElementById('visits');
-            if (visitsElement) {
-                visitsElement.innerText = displayCount;
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching visitor count:', error);
-            const visitsElement = document.getElementById('visits');
-            if (visitsElement) {
-                // Fallback in case of error
-                visitsElement.innerText = initialCount;
-            }
-        });
+const initialCount = 50000;
+const filePath = 'counter.txt';
+
+let currentCount;
+
+try {
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  currentCount = parseInt(fileContent, 10);
+  if (isNaN(currentCount)) {
+    currentCount = 0;
+  }
+} catch (error) {
+  currentCount = 0;
 }
- 
-// Ensure the function runs after the page loads
-document.addEventListener('DOMContentLoaded', displayVisitorCount);
 
+currentCount += 1;
 
+fs.writeFileSync(filePath, currentCount.toString());
+
+console.log(`Visitor count updated to: ${currentCount + initialCount}`);
