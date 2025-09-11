@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '18'
       - name: Run counter script
-        run: node .github/workflows/update-counter.js
+        run: node update-counter.js
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
