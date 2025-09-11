@@ -6,6 +6,39 @@
     <title>نظام الدوام للعاملين في وزارة التربية - د. نواف خالد الزعبي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+.visitor-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 1.1rem;
+}
+
+.visitor-counter i {
+    color: #fdbb2d;
+    font-size: 1.3rem;
+}
+
+.visitor-counter span {
+    font-weight: bold;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .visitor-counter {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+    
+    .visitor-counter i {
+        font-size: 1.1rem;
+    }
+}
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -2674,10 +2707,11 @@
     </div>
 </div>
 
-<div class="visitor-counter">
-    <span style="font-size: 1.5rem; color: #fdbb2d; margin-left: 8px;"><i class="fas fa-users"></i></span>
-    <span id="visits" style="font-size: 1.1rem; font-weight: bold; color: white;">50,000+</span>
-</div>
+            <!-- عداد الزوار -->
+            <div class="visitor-counter">
+                <i class="fas fa-users"></i>
+                <span id="visits">50,000</span>
+            </div>
 
     <script>
         // وظيفة لإظهار المحتوى المحدد وإخفاء الآخرين
@@ -3030,38 +3064,27 @@ function calculateFlexibleSchedule() {
         toggleGenderField();
     });
 
-// عدّاد زوار مبسط باستخدام localStorage
+// عدّاد زوار يزيد مع كل زيارة
 function updateVisitorCounter() {
     const counterElement = document.getElementById('visits');
     if (!counterElement) return;
     
     try {
-        // زيادة العداد مع منع التلاعب (زيادة مرة واحدة يوميًا لكل زائر)
-        const today = new Date().toDateString();
-        const lastVisit = localStorage.getItem('lastVisit');
-        const storedCount = localStorage.getItem('visitorCount');
         const baseCount = 50000;
-        
+        let storedCount = localStorage.getItem('visitorCount');
         let currentCount = baseCount;
         
         if (storedCount) {
             currentCount = parseInt(storedCount);
         }
         
-        if (lastVisit !== today) {
-            // زيادة العداد إذا كانت هذه أول زيارة اليوم لهذا المستخدم
-            currentCount += 1;
-            localStorage.setItem('visitorCount', currentCount);
-            localStorage.setItem('lastVisit', today);
-        }
-        
-        // عرض العداد مع فواصل للألوف
+        currentCount += 1;
+        localStorage.setItem('visitorCount', currentCount);
         counterElement.textContent = currentCount.toLocaleString();
         
     } catch (error) {
-        // في حالة وجود خطأ، عرض الرقم الأساسي
         console.error('Error updating visitor counter:', error);
-        counterElement.textContent = '50,000+';
+        counterElement.textContent = '50,000';
     }
 }
 
@@ -3070,6 +3093,7 @@ document.addEventListener('DOMContentLoaded', updateVisitorCounter);
 </script>
 </body>
 </html>
+
 
 
 
