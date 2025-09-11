@@ -3037,13 +3037,14 @@ function calculateFlexibleSchedule() {
     document.getElementById('calculatorResult').style.display = 'block';
 }
         
-        // تهيئة أولية
-        document.addEventListener('DOMContentLoaded', function() {
-            showContent(1);
-            toggleGenderField();
-        });
-    </script>
 <script>
+    // تهيئة أولية
+    document.addEventListener('DOMContentLoaded', function() {
+        showContent(1);
+        toggleGenderField();
+    });
+
+    // كود عداد الزوار
     const initialCount = 50000;
     fetch('counter.txt')
         .then(response => response.text())
