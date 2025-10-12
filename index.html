@@ -3073,74 +3073,87 @@ function calculateFlexibleSchedule() {
 
     // تهيئة أولية
     document.addEventListener('DOMContentLoaded', function() {
+        console.log('🚀 DOM جاهز، بدء العداد...');
         showContent(1);
         toggleGenderField();
+        setTimeout(updateVisitorCounter, 1000);
     });
-
-    // تهيئة Firebase
+        
+    // كود عداد الزوار المحسن مع التصحيح
     const firebaseConfig = {
         apiKey: "AIzaSyDTcJCsewNGWq3RhZqV_Vew8VQi24M8j8M",
-        authDomain: "unified-visitor-counter.firebaseapp.com",
+        authDomain: "unified-visitor-counter.firebasestorage.app",
+        databaseURL: "https://unified-visitor-counter-default-rtdb.firebaseio.com",
         projectId: "unified-visitor-counter",
         storageBucket: "unified-visitor-counter.firebasestorage.app",
         messagingSenderId: "1061029208249",
         appId: "1:1061029208249:web:edd06293f31cb6bcfbbb68"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-    const visitorCountRef = database.ref('visitor_count');
+    console.log('🔥 تهيئة Firebase...');
 
-    // دالة لتوليد معرف فريد (UUID)
-    function generateUUID() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random() * 16 | 0,
-                v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
+    try {
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+            console.log('✅ Firebase initialized successfully');
+        } else {
+            console.log('ℹ️ Firebase already initialized');
+        }
+    } catch (error) {
+        console.error('❌ Firebase initialization error:', error);
+    }
+
+    function updateVisitorCounter() {
+        console.log('🔄 بدء تحديث العداد...');
+        const counterElement = document.getElementById('visits');
+        
+        if (!counterElement) {
+            console.error('❌ عنصر العداد غير موجود!');
+            return;
+        }
+        
+        console.log('✅ عنصر العداد موجود');
+
+        const database = firebase.database();
+        const visitorCountRef = database.ref('visitor_count');
+
+        // عرض القيمة الحالية أولاً
+        visitorCountRef.once('value').then((snapshot) => {
+            const currentValue = snapshot.val();
+            console.log('📊 القيمة الحالية في Firebase:', currentValue);
+            counterElement.textContent = (currentValue || 65100).toLocaleString();
         });
-    }
 
-// كود عداد الزوار المحسن
-const firebaseConfig = {
-    apiKey: "AIzaSyDTcJCsewNGWq3RhZqV_Vew8VQi24M8j8M",
-    authDomain: "unified-visitor-counter.firebasestorage.app",
-    databaseURL: "https://unified-visitor-counter-default-rtdb.firebaseio.com",
-    projectId: "unified-visitor-counter",
-    storageBucket: "unified-visitor-counter.firebasestorage.app",
-    messagingSenderId: "1061029208249",
-    appId: "1:1061029208249:web:edd06293f31cb6bcfbbb68"
-};
+        if (!sessionStorage.getItem('visitorCounted')) {
+            console.log('👤 زائر جديد، زيادة العداد...');
+            
+            visitorCountRef.transaction((currentCount) => {
+                console.log('🔄 Transaction - القيمة الحالية:', currentCount);
+                const newCount = (currentCount || 65100) + 1;
+                console.log('🆕 القيمة الجديدة:', newCount);
+                return newCount;
+            }, (error, committed, snapshot) => {
+                if (error) {
+                    console.error('❌ خطأ في Transaction:', error);
+                } else if (committed) {
+                    console.log('✅ تم زيادة العداد إلى:', snapshot.val());
+                    sessionStorage.setItem('visitorCounted', 'true');
+                    
+                    // تحديث العرض بالقيمة الجديدة
+                    counterElement.textContent = snapshot.val().toLocaleString();
+                }
+            });
+        } else {
+            console.log('ℹ️ الزائر تم حسابه مسبقاً في هذه الجلسة');
+        }
 
-try {
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-} catch (error) {
-    console.log('Firebase initialized');
-}
-
-function updateVisitorCounter() {
-    const counterElement = document.getElementById('visits');
-    if (!counterElement) return;
-
-    const database = firebase.database();
-    const visitorCountRef = database.ref('visitor_count');
-
-    if (!sessionStorage.getItem('visitorCounted')) {
-        visitorCountRef.transaction((currentCount) => {
-            return (currentCount || 65100) + 1;
+        // الاستماع للتحديثات في الوقت الحقيقي
+        visitorCountRef.on('value', (snapshot) => {
+            const count = snapshot.val();
+            console.log('📡 تحديث في الوقت الحقيقي:', count);
+            counterElement.textContent = (count || 65100).toLocaleString();
         });
-        sessionStorage.setItem('visitorCounted', 'true');
-    }
-
-    visitorCountRef.on('value', (snapshot) => {
-        counterElement.textContent = (snapshot.val() || 65100).toLocaleString();
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateVisitorCounter, 1000);
-});
+    };
  }
         
     // تشغيل الدالة عند تحميل الصفحة
@@ -3148,6 +3161,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
