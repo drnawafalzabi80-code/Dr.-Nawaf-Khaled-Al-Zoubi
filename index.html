@@ -3071,93 +3071,51 @@ function calculateFlexibleSchedule() {
 }       
 
 
-    // تهيئة أولية
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('🚀 DOM جاهز، بدء العداد...');
-        showContent(1);
-        toggleGenderField();
-        setTimeout(updateVisitorCounter, 1000);
-    });
-        
-    // كود عداد الزوار المحسن مع التصحيح
-    const firebaseConfig = {
-        apiKey: "AIzaSyDTcJCsewNGWq3RhZqV_Vew8VQi24M8j8M",
-        authDomain: "unified-visitor-counter.firebasestorage.app",
-        databaseURL: "https://unified-visitor-counter-default-rtdb.firebaseio.com",
-        projectId: "unified-visitor-counter",
-        storageBucket: "unified-visitor-counter.firebasestorage.app",
-        messagingSenderId: "1061029208249",
-        appId: "1:1061029208249:web:edd06293f31cb6bcfbbb68"
-    };
+// كود عداد الزوار فقط - بدون التأثير على دوال الانتقال
+const firebaseConfig = {
+    apiKey: "AIzaSyDTcJCsewNGWq3RhZqV_Vew8VQi24M8j8M",
+    authDomain: "unified-visitor-counter.firebasestorage.app", 
+    databaseURL: "https://unified-visitor-counter-default-rtdb.firebaseio.com",
+    projectId: "unified-visitor-counter",
+    storageBucket: "unified-visitor-counter.firebasestorage.app",
+    messagingSenderId: "1061029208249",
+    appId: "1:1061029208249:web:edd06293f31cb6bcfbbb68"
+};
 
-    console.log('🔥 تهيئة Firebase...');
+// تهيئة Firebase
+try {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+} catch (error) {
+    console.log('Firebase initialized');
+}
 
-    try {
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-            console.log('✅ Firebase initialized successfully');
-        } else {
-            console.log('ℹ️ Firebase already initialized');
-        }
-    } catch (error) {
-        console.error('❌ Firebase initialization error:', error);
+// دالة العداد فقط
+function updateVisitorCounter() {
+    const counterElement = document.getElementById('visits');
+    if (!counterElement) return;
+
+    const database = firebase.database();
+    const visitorCountRef = database.ref('visitor_count');
+
+    if (!sessionStorage.getItem('visitorCounted')) {
+        visitorCountRef.transaction((currentCount) => {
+            return (currentCount || 65100) + 1;
+        });
+        sessionStorage.setItem('visitorCounted', 'true');
     }
 
-    function updateVisitorCounter() {
-        console.log('🔄 بدء تحديث العداد...');
-        const counterElement = document.getElementById('visits');
-        
-        if (!counterElement) {
-            console.error('❌ عنصر العداد غير موجود!');
-            return;
-        }
-        
-        console.log('✅ عنصر العداد موجود');
+    visitorCountRef.on('value', (snapshot) => {
+        counterElement.textContent = (snapshot.val() || 65100).toLocaleString();
+    });
+}
 
-        const database = firebase.database();
-        const visitorCountRef = database.ref('visitor_count');
-
-        // عرض القيمة الحالية أولاً
-        visitorCountRef.once('value').then((snapshot) => {
-            const currentValue = snapshot.val();
-            console.log('📊 القيمة الحالية في Firebase:', currentValue);
-            counterElement.textContent = (currentValue || 65100).toLocaleString();
-        });
-
-        if (!sessionStorage.getItem('visitorCounted')) {
-            console.log('👤 زائر جديد، زيادة العداد...');
-            
-            visitorCountRef.transaction((currentCount) => {
-                console.log('🔄 Transaction - القيمة الحالية:', currentCount);
-                const newCount = (currentCount || 65100) + 1;
-                console.log('🆕 القيمة الجديدة:', newCount);
-                return newCount;
-            }, (error, committed, snapshot) => {
-                if (error) {
-                    console.error('❌ خطأ في Transaction:', error);
-                } else if (committed) {
-                    console.log('✅ تم زيادة العداد إلى:', snapshot.val());
-                    sessionStorage.setItem('visitorCounted', 'true');
-                    
-                    // تحديث العرض بالقيمة الجديدة
-                    counterElement.textContent = snapshot.val().toLocaleString();
-                }
-            });
-        } else {
-            console.log('ℹ️ الزائر تم حسابه مسبقاً في هذه الجلسة');
-        }
-
-        // الاستماع للتحديثات في الوقت الحقيقي
-        visitorCountRef.on('value', (snapshot) => {
-            const count = snapshot.val();
-            console.log('📡 تحديث في الوقت الحقيقي:', count);
-            counterElement.textContent = (count || 65100).toLocaleString();
-        });
-    };
- }
-        
-    // تشغيل الدالة عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', updateUniqueVisitorCounter);
+// إضافة استدعاء العداد فقط في DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(updateVisitorCounter, 1000);
+});
+// ⬆️⬆️⬆️ نهاية الكود الجديد ⬆️⬆️⬆️
 </script>
 </body>
 </html>
