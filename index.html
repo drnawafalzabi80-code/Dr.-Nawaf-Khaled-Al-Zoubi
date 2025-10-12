@@ -2726,399 +2726,410 @@
     <span id="visits">65,100</span>
 </div>
 
-    <script>
-        // وظيفة لإظهار المحتوى المحدد وإخفاء الآخرين
- function showContent(contentId) {
-    // إخفاء جميع المحتويات
-    const contents = document.querySelectorAll('.content-container');
-    contents.forEach(content => {
-        content.style.display = 'none';
-    });
-    
-    // إظهار المحتوى المحدد
-    document.getElementById('content' + contentId).style.display = 'block';
-    
-    // تحديث حالة الأزرار النشطة (للمراحل فقط)
-    if (contentId >= 1 && contentId <= 5) {
-        const boxes = document.querySelectorAll('.stage-box');
-        boxes.forEach((box, index) => {
-            if (index + 1 === contentId) {
-                box.classList.add('active-stage');
-            } else {
-                box.classList.remove('active-stage');
-            }
-        });
-    } else {
-        // إزالة النشاط من جميع صناديق المراحل
-        const boxes = document.querySelectorAll('.stage-box');
-        boxes.forEach(box => {
-            box.classList.remove('active-stage');
-        });
-    }
-    
-    // تحديث شريط التقدم (للمراحل فقط)
-    if (contentId >= 1 && contentId <= 5) {
-        updateProgressBar(contentId);
-    }
-    
-    // إظهار إشعار
-    let message = 'تم تحميل المحتوى المطلوب';
-    if (contentId === 6) {
-        message = 'تم تحميل مواعيد الدوام والامتحانات';
-    } else if (contentId === 7) {
-        message = 'تم تحميل الإجازات الرسمية';
-    }
-    showNotification(message);
-}
-        
-        // وظيفة تحديث شريط التقدم
-        function updateProgressBar(contentId) {
-            const progressBar = document.getElementById('progressBar');
-            const progressPercentage = (contentId / 5) * 100;
-            progressBar.style.width = progressPercentage + '%';
-        }
-        
-        // وظيفة إظهار الإشعارات
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            const notificationText = document.getElementById('notificationText');
-            
-            notificationText.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-        
-        // وظيفة العودة إلى الأعلى
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
+<script>
+    // وظيفة لإظهار المحتوى المحدد وإخفاء الآخرين
+    function showContent(contentId) {
+        // إخفاء جميع المحتويات
+        const contents = document.querySelectorAll('.content-container');
+        contents.forEach(content => {
+            content.style.display = 'none';
         });
         
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // إظهار المحتوى المحدد
+        document.getElementById('content' + contentId).style.display = 'block';
+        
+        // تحديث حالة الأزرار النشطة (للمراحل فقط)
+        if (contentId >= 1 && contentId <= 5) {
+            const boxes = document.querySelectorAll('.stage-box');
+            boxes.forEach((box, index) => {
+                if (index + 1 === contentId) {
+                    box.classList.add('active-stage');
+                } else {
+                    box.classList.remove('active-stage');
+                }
             });
-        });
-        
-        // وظيفة فتح الحاسبة
-        function openCalculator() {
-            // إخفاء جميع المحتويات
-            const contents = document.querySelectorAll('.content-container');
-            contents.forEach(content => {
-                content.style.display = 'none';
-            });
-            
-            // إظهار محتوى الحاسبة
-            document.getElementById('calculator-content').style.display = 'block';
-            
-            // تحديث حالة الأزرار النشطة
+        } else {
+            // إزالة النشاط من جميع صناديق المراحل
             const boxes = document.querySelectorAll('.stage-box');
             boxes.forEach(box => {
                 box.classList.remove('active-stage');
             });
-            
-            // إظهار إشعار
-            showNotification('تم فتح حاسبة الدوام المرن');
         }
         
-        // وظيفة تبديل حقل الجنس
-        function toggleGenderField() {
-            const stage = document.getElementById('stage').value;
-            const genderField = document.getElementById('genderField');
-            
-            if (stage === 'ministry') {
-                genderField.style.display = 'block';
-            } else {
-                genderField.style.display = 'none';
-            }
+        // تحديث شريط التقدم (للمراحل فقط)
+        if (contentId >= 1 && contentId <= 5) {
+            updateProgressBar(contentId);
         }
         
-        // وظيفة مساعدة: إضافة دقائق إلى الوقت
-        function addMinutesToTime(timeInMinutes, minutesToAdd) {
-            const totalMinutes = timeInMinutes + minutesToAdd;
-            const hours = Math.floor(totalMinutes / 60) % 24;
-            const minutes = totalMinutes % 60;
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        // إظهار إشعار
+        let message = 'تم تحميل المحتوى المطلوب';
+        if (contentId === 6) {
+            message = 'تم تحميل مواعيد الدوام والامتحانات';
+        } else if (contentId === 7) {
+            message = 'تم تحميل الإجازات الرسمية';
         }
-        
-        // وظيفة مساعدة: تنسيق الوقت
-        function formatTime(timeString) {
-            const [hours, minutes] = timeString.split(':');
-            const hour = parseInt(hours);
-            const period = hour >= 12 ? 'م' : 'ص';
-            const formattedHour = hour % 12 || 12;
-            return `${formattedHour}:${minutes} ${period}`;
-        }
-        
-// وظيفة حساب الدوام المرن المعدلة
-function calculateFlexibleSchedule() {
-    const stage = document.getElementById('stage').value;
-    const arrivalTime = document.getElementById('arrival').value;
-    const gender = document.getElementById('gender').value;
+        showNotification(message);
+    }
     
-    // إخفاء رسالة الخطأ
-    document.getElementById('errorMessage').style.display = 'none';
+    // وظيفة تحديث شريط التقدم
+    function updateProgressBar(contentId) {
+        const progressBar = document.getElementById('progressBar');
+        const progressPercentage = (contentId / 5) * 100;
+        progressBar.style.width = progressPercentage + '%';
+    }
     
-    // تحويل وقت الحضور إلى دقائق لتسهيل المقارنة
-    const [hours, minutes] = arrivalTime.split(':').map(Number);
-    const arrivalMinutes = hours * 60 + minutes;
+    // وظيفة إظهار الإشعارات
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notificationText');
+        
+        notificationText.textContent = message;
+        notification.classList.add('show');
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
     
-    let presenceText, departure;
-    let isExempt = false;
+    // وظيفة العودة إلى الأعلى
+    const backToTopButton = document.getElementById('backToTop');
     
-    // تحديد الإعفاء من البصمة بناءً على المرحلة ووقت الحضور
-    if (stage === 'kindergarten') {
-        // رياض الأطفال: الإعفاء من 9:31 فما فوق
-        if (arrivalMinutes >= 9*60+31) {
-            isExempt = true;
-            presenceText = "معفي من بصمة التواجد";
-        }
-        
-        if (arrivalMinutes <= 6*60+45) {
-            departure = "11:35";
-        } else if (arrivalMinutes >= 7*60+30) {
-            departure = "12:20";
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
         } else {
-            const minutesAfter645 = arrivalMinutes - (6*60+45);
-            departure = addMinutesToTime(6*60+45 + minutesAfter645, 290);
+            backToTopButton.classList.remove('show');
         }
-    } else if (stage === 'elementary') {
-        // الابتدائية: الإعفاء من 9:31 فما فوق
-        if (arrivalMinutes >= 9*60+31) {
-            isExempt = true;
-            presenceText = "معفي من بصمة التواجد";
-        }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // وظيفة فتح الحاسبة
+    function openCalculator() {
+        // إخفاء جميع المحتويات
+        const contents = document.querySelectorAll('.content-container');
+        contents.forEach(content => {
+            content.style.display = 'none';
+        });
         
-        if (arrivalMinutes <= 6*60+45) {
-            departure = "12:45";
-        } else if (arrivalMinutes >= 7*60+30) {
-            departure = "13:30";
-        } else {
-            const minutesAfter645 = arrivalMinutes - (6*60+45);
-            departure = addMinutesToTime(6*60+45 + minutesAfter645, 360);
-        }
-    } else if (stage === 'middle') {
-        // المتوسطة: الإعفاء من 9:41 فما فوق
-        if (arrivalMinutes >= 9*60+41) {
-            isExempt = true;
-            presenceText = "معفي من بصمة التواجد";
-        }
+        // إظهار محتوى الحاسبة
+        document.getElementById('calculator-content').style.display = 'block';
         
-        if (arrivalMinutes <= 6*60+55) {
-            departure = "13:05";
-        } else if (arrivalMinutes >= 7*60+40) {
-            departure = "13:50";
-        } else {
-            const minutesAfter655 = arrivalMinutes - (6*60+55);
-            departure = addMinutesToTime(6*60+55 + minutesAfter655, 370);
-        }
-    } else if (stage === 'high') {
-        // الثانوية: الإعفاء من 9:56 فما فوق
-        if (arrivalMinutes >= 9*60+56) {
-            isExempt = true;
-            presenceText = "معفي من بصمة التواجد";
-        }
+        // تحديث حالة الأزرار النشطة
+        const boxes = document.querySelectorAll('.stage-box');
+        boxes.forEach(box => {
+            box.classList.remove('active-stage');
+        });
         
-        if (arrivalMinutes <= 7*60+10) {
-            departure = "13:20";
-        } else if (arrivalMinutes >= 7*60+55) {
-            departure = "14:05";
-        } else {
-            const minutesAfter710 = arrivalMinutes - (7*60+10);
-            departure = addMinutesToTime(7*60+10 + minutesAfter710, 370);
-        }
-    } else if (stage === 'ministry') {
-        // الوزارة والمناطق: الإعفاء من 10:01 فما فوق
-        if (arrivalMinutes >= 10*60+1) {
-            isExempt = true;
-            presenceText = "معفي من بصمة التواجد";
-        }
+        // إظهار إشعار
+        showNotification('تم فتح حاسبة الدوام المرن');
+    }
+    
+    // وظيفة تبديل حقل الجنس
+    function toggleGenderField() {
+        const stage = document.getElementById('stage').value;
+        const genderField = document.getElementById('genderField');
         
-        if (arrivalMinutes <= 7*60+0) {
-            departure = (gender === 'female') ? "13:15" : "13:30";
-        } else if (arrivalMinutes === 8*60+0) {
-            departure = (gender === 'female') ? "14:15" : "14:30";
-        } else if (arrivalMinutes >= 8*60+1) {
-            departure = (gender === 'female') ? "14:45" : "15:00";
+        if (stage === 'ministry') {
+            genderField.style.display = 'block';
         } else {
-            const minutesAfter700 = arrivalMinutes - (7*60+0);
-            if (gender === 'female') {
-                departure = addMinutesToTime(7*60+0 + minutesAfter700, 375);
-            } else {
-                departure = addMinutesToTime(7*60+0 + minutesAfter700, 390);
-            }
+            genderField.style.display = 'none';
         }
     }
     
-    // إذا لم يكن معفيًا، حساب فترة التواجد بشكل طبيعي
-    let presenceStart, presenceEnd;
-    if (!isExempt) {
+    // وظيفة مساعدة: إضافة دقائق إلى الوقت
+    function addMinutesToTime(timeInMinutes, minutesToAdd) {
+        const totalMinutes = timeInMinutes + minutesToAdd;
+        const hours = Math.floor(totalMinutes / 60) % 24;
+        const minutes = totalMinutes % 60;
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    }
+    
+    // وظيفة مساعدة: تنسيق الوقت
+    function formatTime(timeString) {
+        const [hours, minutes] = timeString.split(':');
+        const hour = parseInt(hours);
+        const period = hour >= 12 ? 'م' : 'ص';
+        const formattedHour = hour % 12 || 12;
+        return `${formattedHour}:${minutes} ${period}`;
+    }
+
+    // وظيفة حساب الدوام المرن المعدلة
+    function calculateFlexibleSchedule() {
+        const stage = document.getElementById('stage').value;
+        const arrivalTime = document.getElementById('arrival').value;
+        const gender = document.getElementById('gender').value;
+        
+        // إخفاء رسالة الخطأ
+        document.getElementById('errorMessage').style.display = 'none';
+        
+        // تحويل وقت الحضور إلى دقائق لتسهيل المقارنة
+        const [hours, minutes] = arrivalTime.split(':').map(Number);
+        const arrivalMinutes = hours * 60 + minutes;
+        
+        let presenceText, departure;
+        let isExempt = false;
+        
+        // تحديد الإعفاء من البصمة بناءً على المرحلة ووقت الحضور
         if (stage === 'kindergarten') {
+            // رياض الأطفال: الإعفاء من 9:31 فما فوق
+            if (arrivalMinutes >= 9*60+31) {
+                isExempt = true;
+                presenceText = "معفي من بصمة التواجد";
+            }
+            
             if (arrivalMinutes <= 6*60+45) {
-                presenceStart = "08:46";
-                presenceEnd = "09:45";
+                departure = "11:35";
             } else if (arrivalMinutes >= 7*60+30) {
-                presenceStart = "09:31";
-                presenceEnd = "10:30";
+                departure = "12:20";
             } else {
                 const minutesAfter645 = arrivalMinutes - (6*60+45);
-                presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
-                presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+                departure = addMinutesToTime(6*60+45 + minutesAfter645, 290);
             }
         } else if (stage === 'elementary') {
+            // الابتدائية: الإعفاء من 9:31 فما فوق
+            if (arrivalMinutes >= 9*60+31) {
+                isExempt = true;
+                presenceText = "معفي من بصمة التواجد";
+            }
+            
             if (arrivalMinutes <= 6*60+45) {
-                presenceStart = "08:46";
-                presenceEnd = "09:45";
+                departure = "12:45";
             } else if (arrivalMinutes >= 7*60+30) {
-                presenceStart = "09:31";
-                presenceEnd = "10:30";
+                departure = "13:30";
             } else {
                 const minutesAfter645 = arrivalMinutes - (6*60+45);
-                presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
-                presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+                departure = addMinutesToTime(6*60+45 + minutesAfter645, 360);
             }
         } else if (stage === 'middle') {
+            // المتوسطة: الإعفاء من 9:41 فما فوق
+            if (arrivalMinutes >= 9*60+41) {
+                isExempt = true;
+                presenceText = "معفي من بصمة التواجد";
+            }
+            
             if (arrivalMinutes <= 6*60+55) {
-                presenceStart = "08:56";
-                presenceEnd = "09:55";
+                departure = "13:05";
             } else if (arrivalMinutes >= 7*60+40) {
-                presenceStart = "09:41";
-                presenceEnd = "10:40";
+                departure = "13:50";
             } else {
                 const minutesAfter655 = arrivalMinutes - (6*60+55);
-                presenceStart = addMinutesToTime(6*60+55 + minutesAfter655, 121);
-                presenceEnd = addMinutesToTime(6*60+55 + minutesAfter655, 180);
+                departure = addMinutesToTime(6*60+55 + minutesAfter655, 370);
             }
         } else if (stage === 'high') {
+            // الثانوية: الإعفاء من 9:56 فما فوق
+            if (arrivalMinutes >= 9*60+56) {
+                isExempt = true;
+                presenceText = "معفي من بصمة التواجد";
+            }
+            
             if (arrivalMinutes <= 7*60+10) {
-                presenceStart = "09:11";
-                presenceEnd = "10:10";
+                departure = "13:20";
             } else if (arrivalMinutes >= 7*60+55) {
-                presenceStart = "09:56";
-                presenceEnd = "10:55";
+                departure = "14:05";
             } else {
                 const minutesAfter710 = arrivalMinutes - (7*60+10);
-                presenceStart = addMinutesToTime(7*60+10 + minutesAfter710, 121);
-                presenceEnd = addMinutesToTime(7*60+10 + minutesAfter710, 180);
+                departure = addMinutesToTime(7*60+10 + minutesAfter710, 370);
             }
         } else if (stage === 'ministry') {
+            // الوزارة والمناطق: الإعفاء من 10:01 فما فوق
+            if (arrivalMinutes >= 10*60+1) {
+                isExempt = true;
+                presenceText = "معفي من بصمة التواجد";
+            }
+            
             if (arrivalMinutes <= 7*60+0) {
-                presenceStart = "09:01";
-                presenceEnd = "10:00";
+                departure = (gender === 'female') ? "13:15" : "13:30";
             } else if (arrivalMinutes === 8*60+0) {
-                presenceStart = "10:01";
-                presenceEnd = "11:00";
+                departure = (gender === 'female') ? "14:15" : "14:30";
             } else if (arrivalMinutes >= 8*60+1) {
-                presenceStart = "10:01";
-                presenceEnd = "11:00";
+                departure = (gender === 'female') ? "14:45" : "15:00";
             } else {
                 const minutesAfter700 = arrivalMinutes - (7*60+0);
-                presenceStart = addMinutesToTime(7*60+0 + minutesAfter700, 121);
-                presenceEnd = addMinutesToTime(7*60+0 + minutesAfter700, 180);
+                if (gender === 'female') {
+                    departure = addMinutesToTime(7*60+0 + minutesAfter700, 375);
+                } else {
+                    departure = addMinutesToTime(7*60+0 + minutesAfter700, 390);
+                }
             }
         }
+        
+        // إذا لم يكن معفيًا، حساب فترة التواجد بشكل طبيعي
+        let presenceStart, presenceEnd;
+        if (!isExempt) {
+            if (stage === 'kindergarten') {
+                if (arrivalMinutes <= 6*60+45) {
+                    presenceStart = "08:46";
+                    presenceEnd = "09:45";
+                } else if (arrivalMinutes >= 7*60+30) {
+                    presenceStart = "09:31";
+                    presenceEnd = "10:30";
+                } else {
+                    const minutesAfter645 = arrivalMinutes - (6*60+45);
+                    presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+                    presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+                }
+            } else if (stage === 'elementary') {
+                if (arrivalMinutes <= 6*60+45) {
+                    presenceStart = "08:46";
+                    presenceEnd = "09:45";
+                } else if (arrivalMinutes >= 7*60+30) {
+                    presenceStart = "09:31";
+                    presenceEnd = "10:30";
+                } else {
+                    const minutesAfter645 = arrivalMinutes - (6*60+45);
+                    presenceStart = addMinutesToTime(6*60+45 + minutesAfter645, 121);
+                    presenceEnd = addMinutesToTime(6*60+45 + minutesAfter645, 180);
+                }
+            } else if (stage === 'middle') {
+                if (arrivalMinutes <= 6*60+55) {
+                    presenceStart = "08:56";
+                    presenceEnd = "09:55";
+                } else if (arrivalMinutes >= 7*60+40) {
+                    presenceStart = "09:41";
+                    presenceEnd = "10:40";
+                } else {
+                    const minutesAfter655 = arrivalMinutes - (6*60+55);
+                    presenceStart = addMinutesToTime(6*60+55 + minutesAfter655, 121);
+                    presenceEnd = addMinutesToTime(6*60+55 + minutesAfter655, 180);
+                }
+            } else if (stage === 'high') {
+                if (arrivalMinutes <= 7*60+10) {
+                    presenceStart = "09:11";
+                    presenceEnd = "10:10";
+                } else if (arrivalMinutes >= 7*60+55) {
+                    presenceStart = "09:56";
+                    presenceEnd = "10:55";
+                } else {
+                    const minutesAfter710 = arrivalMinutes - (7*60+10);
+                    presenceStart = addMinutesToTime(7*60+10 + minutesAfter710, 121);
+                    presenceEnd = addMinutesToTime(7*60+10 + minutesAfter710, 180);
+                }
+            } else if (stage === 'ministry') {
+                if (arrivalMinutes <= 7*60+0) {
+                    presenceStart = "09:01";
+                    presenceEnd = "10:00";
+                } else if (arrivalMinutes === 8*60+0) {
+                    presenceStart = "10:01";
+                    presenceEnd = "11:00";
+                } else if (arrivalMinutes >= 8*60+1) {
+                    presenceStart = "10:01";
+                    presenceEnd = "11:00";
+                } else {
+                    const minutesAfter700 = arrivalMinutes - (7*60+0);
+                    presenceStart = addMinutesToTime(7*60+0 + minutesAfter700, 121);
+                    presenceEnd = addMinutesToTime(7*60+0 + minutesAfter700, 180);
+                }
+            }
+        }
+        
+        // عرض النتائج
+        const resultContent = document.getElementById('resultContent');
+        
+        if (isExempt) {
+            resultContent.innerHTML = `
+                <div class="result-card">
+                    <h3>وقت الحضور</h3>
+                    <div class="time-value">${formatTime(arrivalTime)}</div>
+                </div>
+                <div class="result-card">
+                    <h3>حالة التواجد</h3>
+                    <div class="time-value highlight">${presenceText}</div>
+                </div>
+                <div class="result-card">
+                    <h3>وقت الانصراف</h3>
+                    <div class="time-value">${formatTime(departure)}</div>
+                </div>
+            `;
+        } else {
+            resultContent.innerHTML = `
+                <div class="result-card">
+                    <h3>وقت الحضور</h3>
+                    <div class="time-value">${formatTime(arrivalTime)}</div>
+                </div>
+                <div class="result-card">
+                    <h3>بداية فترة التواجد</h3>
+                    <div class="time-value">${formatTime(presenceStart)}</div>
+                </div>
+                <div class="result-card">
+                    <h3>نهاية فترة التواجد</h3>
+                    <div class="time-value">${formatTime(presenceEnd)}</div>
+                </div>
+                <div class="result-card">
+                    <h3>وقت الانصراف</h3>
+                    <div class="time-value highlight">${formatTime(departure)}</div>
+                </div>
+            `;
+        }
+        
+        document.getElementById('calculatorResult').style.display = 'block';
     }
-    
-    // عرض النتائج
-    const resultContent = document.getElementById('resultContent');
-    
-    if (isExempt) {
-        resultContent.innerHTML = `
-            <div class="result-card">
-                <h3>وقت الحضور</h3>
-                <div class="time-value">${formatTime(arrivalTime)}</div>
-            </div>
-            <div class="result-card">
-                <h3>حالة التواجد</h3>
-                <div class="time-value highlight">${presenceText}</div>
-            </div>
-            <div class="result-card">
-                <h3>وقت الانصراف</h3>
-                <div class="time-value">${formatTime(departure)}</div>
-            </div>
-        `;
-    } else {
-        resultContent.innerHTML = `
-            <div class="result-card">
-                <h3>وقت الحضور</h3>
-                <div class="time-value">${formatTime(arrivalTime)}</div>
-            </div>
-            <div class="result-card">
-                <h3>بداية فترة التواجد</h3>
-                <div class="time-value">${formatTime(presenceStart)}</div>
-            </div>
-            <div class="result-card">
-                <h3>نهاية فترة التواجد</h3>
-                <div class="time-value">${formatTime(presenceEnd)}</div>
-            </div>
-            <div class="result-card">
-                <h3>وقت الانصراف</h3>
-                <div class="time-value highlight">${formatTime(departure)}</div>
-            </div>
-        `;
-    }
-    
-    document.getElementById('calculatorResult').style.display = 'block';
-}       
 
+    // ⬇️⬇️⬇️ كود عداد الزوار المصحح ⬇️⬇️⬇️
+    const firebaseConfig = {
+        apiKey: "AIzaSyDTcJCsewNGWq3RhZqV_Vew8VQi24M8j8M",
+        authDomain: "unified-visitor-counter.firebasestorage.app",
+        databaseURL: "https://unified-visitor-counter-default-rtdb.firebaseio.com",
+        projectId: "unified-visitor-counter",
+        storageBucket: "unified-visitor-counter.firebasestorage.app",
+        messagingSenderId: "1061029208249",
+        appId: "1:1061029208249:web:edd06293f31cb6bcfbbb68"
+    };
 
-// كود عداد الزوار فقط - بدون التأثير على دوال الانتقال
-const firebaseConfig = {
-    apiKey: "AIzaSyDTcJCsewNGWq3RhZqV_Vew8VQi24M8j8M",
-    authDomain: "unified-visitor-counter.firebasestorage.app", 
-    databaseURL: "https://unified-visitor-counter-default-rtdb.firebaseio.com",
-    projectId: "unified-visitor-counter",
-    storageBucket: "unified-visitor-counter.firebasestorage.app",
-    messagingSenderId: "1061029208249",
-    appId: "1:1061029208249:web:edd06293f31cb6bcfbbb68"
-};
-
-// تهيئة Firebase
-try {
-    if (!firebase.apps.length) {
+    // تهيئة Firebase
+    try {
         firebase.initializeApp(firebaseConfig);
+    } catch (error) {
+        console.log('Firebase initialized already or error:', error);
     }
-} catch (error) {
-    console.log('Firebase initialized');
-}
 
-// دالة العداد فقط
-function updateVisitorCounter() {
-    const counterElement = document.getElementById('visits');
-    if (!counterElement) return;
+    // دالة تحديث عداد الزوار
+    function updateVisitorCounter() {
+        const counterElement = document.getElementById('visits');
+        if (!counterElement) return;
 
-    const database = firebase.database();
-    const visitorCountRef = database.ref('visitor_count');
+        const database = firebase.database();
+        const visitorCountRef = database.ref('visitor_count');
 
-    if (!sessionStorage.getItem('visitorCounted')) {
-        visitorCountRef.transaction((currentCount) => {
-            return (currentCount || 65100) + 1;
+        // زيادة العداد فقط إذا لم يتم العد في هذه الجلسة
+        if (!sessionStorage.getItem('visitorCounted')) {
+            visitorCountRef.transaction((currentCount) => {
+                return (currentCount || 65100) + 1;
+            }, (error, committed, snapshot) => {
+                if (error) {
+                    console.log('Transaction failed abnormally!', error);
+                } else if (!committed) {
+                    console.log('Transaction aborted by another request.');
+                } else {
+                    console.log('Visitor count increased successfully');
+                    sessionStorage.setItem('visitorCounted', 'true');
+                }
+            });
+        }
+
+        // تحديث العداد في الوقت الحقيقي
+        visitorCountRef.on('value', (snapshot) => {
+            const count = snapshot.val() || 65100;
+            counterElement.textContent = count.toLocaleString();
+        }, (error) => {
+            console.log('Error reading visitor count:', error);
         });
-        sessionStorage.setItem('visitorCounted', 'true');
     }
 
-    visitorCountRef.on('value', (snapshot) => {
-        counterElement.textContent = (snapshot.val() || 65100).toLocaleString();
+    // تهيئة العداد عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateVisitorCounter, 2000);
     });
-}
-
-// إضافة استدعاء العداد فقط في DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateVisitorCounter, 1000);
-});
-// ⬆️⬆️⬆️ نهاية الكود الجديد ⬆️⬆️⬆️
+    // ⬆️⬆️⬆️ نهاية كود عداد الزوار المصحح ⬆️⬆️⬆️
 </script>
 </body>
 </html>
+
 
 
 
