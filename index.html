@@ -3099,7 +3099,7 @@
         // زيادة العداد فقط إذا لم يتم العد في هذه الجلسة
         if (!sessionStorage.getItem('visitorCounted')) {
             visitorCountRef.transaction((currentCount) => {
-                return (currentCount || 65100) + 1;
+                return (currentCount || 500100) + 1;
             }, (error, committed, snapshot) => {
                 if (error) {
                     console.log('Transaction failed abnormally!', error);
@@ -3114,7 +3114,7 @@
 
         // تحديث العداد في الوقت الحقيقي
         visitorCountRef.on('value', (snapshot) => {
-            const count = snapshot.val() || 65100;
+            const count = snapshot.val() || 500100;
             counterElement.textContent = count.toLocaleString();
         }, (error) => {
             console.log('Error reading visitor count:', error);
@@ -3154,6 +3154,36 @@
     });
     </script>
     <!-- ===== نهاية كود الحماية ===== -->
+
+        // ... كود عداد الزوار الموجود ...
+
+    <!-- ===== كود الحماية ===== -->
+    <script>
+    // منع النقر بزر الفأرة الأيمن
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        alert("❌ جميع الحقوق محفوظة لد. نواف خالد الزعبي. النسخ غير مسموح.");
+        return false;
+    });
+
+    // منع اختصارات لوحة المفاتيح
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
+            e.preventDefault();
+            alert("❌ عذراً، هذه الوظيفة معطلة لحماية المحتوى.");
+            return false;
+        }
+    });
+
+    // منع تحديد النص بالماوس
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    </script>
+    <!-- ===== نهاية كود الحماية ===== -->
+    </body>
+    </html>
     </body>
     </html>
 </script>
