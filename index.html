@@ -3127,29 +3127,29 @@
     });
     // ⬆️⬆️⬆️ نهاية كود عداد الزوار المصحح ⬆️⬆️⬆️
     <script>
-        
-    // منع النقر بزر الفأرة الأيمن
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        alert("❌ جميع الحقوق محفوظة لد. نواف خالد الزعبي. النسخ غير مسموح.");
-        return false;
-    });
 
-    // منع اختصارات لوحة المفاتيح
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
-            e.preventDefault();
-            alert("❌ عذراً، هذه الوظيفة معطلة لحماية المحتوى.");
-            return false;
-        }
-    });
+// منع النقر بزر الفأرة الأيمن
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert("جميع الحقوق محفوظة لد. نواف خالد الزعبي. النسخ غير مسموح.");
+    return false;
+});
 
-    // منع تحديد النص بالماوس
-    document.addEventListener('selectstart', function(e) {
+// منع اختصارات لوحة المفاتيح
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
         e.preventDefault();
+        alert("هذه الوظيفة معطلة لحماية المحتوى.");
         return false;
-    });
-    </script>
+    }
+});
+
+// منع تحديد النص بالماوس
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+    return false;
+});
+</script>
 </body>
 </html>
 
